@@ -1,3 +1,4 @@
 !https://tim.jyu.fi/view/kurssit/tie/ohj2/2018k/ht/laanhema = Suunnitelma TIMiss‰
+
 kuvat/paaikkuna_k.jpg 	= ohjelman p‰‰ikkuna (k‰sin piirretty)
 kuvat/tiedot_k.jpg 	= tietokentt‰-n‰kym‰ (k‰sin piirretty)
