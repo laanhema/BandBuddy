@@ -1,0 +1,4 @@
+﻿!https://tim.jyu.fi/view/kurssit/tie/ohj2/2018k/ht/lahaeske = Suunnitelma TIMissä
+kuvat/paaikkunanakyma.PNG = ohjelman pääikkuna (käsin piirretty)
+kuvat/lisaysikkuna.png      =  mehun lisäysikkuna (kp)
+kuvat/poistoikkuna.png   = mehun poistoikkuna (kp)
