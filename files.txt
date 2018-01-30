@@ -17,8 +17,7 @@ kuvat/paaview.png = ohjelman pääikkuna
 = <h3>Ajettava ohjelma</h3>
 bandbuddy.jar = ajettava ohjelma
 =
-=
-<h3>Ohjelman esisuunnitelma</h3>
+= <h3>Ohjelman esisuunnitelma</h3>
 =
 kuvat/paaikkuna_kasin.jpg = ohjelman pääikkuna (käsin piirretty)
 kuvat/tiedot_kasin.jpg =  henkilön tiedot -ikkuna (käsin piirretty)
