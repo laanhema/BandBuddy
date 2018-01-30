@@ -4,8 +4,7 @@
 =
 @https://trac.cc.jyu.fi/projects/ohj2ht/browser/k2018/laanhema/ = Työ versionhallinnassa
 =
-=
-<h3>Ohjelman avustus</h3>
+= <h3>Ohjelman avustus</h3>
 =
 !https://tim.jyu.fi/view/kurssit/tie/ohj2/2018k/ht/laanhema = Suunnitelma TIMissä
 =
@@ -15,8 +14,7 @@ kuvat/jasenenlisays.png = näkymä jossa voi luoda uuden henkilön tiedot
 kuvat/tietokentta.png = ikkuna jossa näkyy henkilön kaikki tiedot
 kuvat/paaview.png = ohjelman pääikkuna
 =
-=
-<h3>Ajettava ohjelma</h3>
+= <h3>Ajettava ohjelma</h3>
 bandbuddy.jar = ajettava ohjelma
 =
 =
@@ -25,8 +23,7 @@ bandbuddy.jar = ajettava ohjelma
 kuvat/paaikkuna_kasin.jpg = ohjelman pääikkuna (käsin piirretty)
 kuvat/tiedot_kasin.jpg =  henkilön tiedot -ikkuna (käsin piirretty)
 =
-=
-<h3>Käyttöliittymän ulkoasu JavaFX:llä</h3>
+= <h3>Käyttöliittymän ulkoasu JavaFX:llä</h3>
 src/BandBuddy/BandBuddyMain.java = ohjelman käynnistävä pääluokka
 src/BandBuddy/paakentta.fxml = ohjelman varsinainen käyttöliittymä
 src/BandBuddy/BandBuddyController.java = ohjain joka käsittelee käyttöliittymästä tulevat tapahtumat
@@ -37,8 +34,7 @@ src/BandBuddy/jasenenlisays.fxml = ikkuna jossa luodaan uuden henkilön tiedot
 src/BandBuddy/editointikentta.fxml = ikkuna jossa muokataan henkilön tietoja
 src/BandBuddy/dialogi_poisto.fxml = ikkuna joka kysyy poistetaanko henkilön tiedot varmasti
 =
-=
-<h3>Muita tiedostoja</h3>
+= <h3>Muita tiedostoja</h3>
 build.xml = Ant-skripti joka tekee .jar:in
 .project = Eclipsen projekti
 .classpath = Eclipsen luokkapolku
