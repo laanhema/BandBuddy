@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import BandBuddy.Henkilo?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BandBuddy.BandBuddyController">
+	<center>
+		<BorderPane prefHeight="375.0" prefWidth="564.0" BorderPane.alignment="CENTER">
+			<left>
+				<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="301.0" prefWidth="578.0">
+					<center>
+						<ScrollPane hmax="0.0" prefHeight="273.0" prefWidth="482.0" vmax="0.0">
+							<content>
+								<TableView prefHeight="273.0" prefWidth="576.0">
+									<columns>
+
+										<TableColumn prefWidth="215.0" text="Nimi">
+											<cellValueFactory>
+												<PropertyValueFactory property="nimi" />
+											</cellValueFactory>
+										</TableColumn>
+
+										<TableColumn prefWidth="93.0" text="Genre">
+											<cellValueFactory>
+												<PropertyValueFactory property="genre" />
+											</cellValueFactory>
+										</TableColumn>
+
+										<TableColumn prefWidth="129.0" text="Instrumentti">
+											<cellValueFactory>
+												<PropertyValueFactory property="instrumentti" />
+											</cellValueFactory>
+										</TableColumn>
+										
+										<TableColumn prefWidth="137.0" text="Kaupunki">
+										</TableColumn>
+										
+
+									</columns>
+									<items>
+										<FXCollections fx:factory="observableArrayList">
+											<Henkilo genre="Progressive Metal" instrumentti="Kitara, Basso" kaupunki="Jyväskylä" nimi="Markus Mäntymaa" />
+											<Henkilo genre="Djent" instrumentti="Kitara" kaupunki="Jyväskylä" nimi="Lauri Makkonen" />
+											<Henkilo genre="Rock" instrumentti="Laulu" kaupunki="Helsinki" nimi="Roope Kaisla" />
+											<Henkilo genre="Jazz" instrumentti="Basso" kaupunki="Espoo" nimi="Sandra Heiskanen" />
+											<Henkilo genre="EDM" instrumentti="Syna" kaupunki="Lahti" nimi="Marko Hyyppä " />
+										</FXCollections>
+									</items>
+
+
+								</TableView>
+							</content>
+						</ScrollPane>
+					</center>
+					<top>
+                  <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+                     <children>
+								<TextField nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="166.0" text="Tarkennettu haku">
+									<cursor>
+										<Cursor fx:constant="DEFAULT" />
+									</cursor>
+								</TextField>
+                     </children>
+                  </HBox>
+					</top>
+					<BorderPane.margin>
+						<Insets />
+					</BorderPane.margin>
+				</BorderPane>
+			</left>
+			<top>
+				<HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="587.0" BorderPane.alignment="TOP_RIGHT" />
+			</top>
+		</BorderPane>
+	</center>
+	<top>
+		<MenuBar BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="Tiedosto">
+					<items>
+						<MenuItem fx:id="menuSulje" mnemonicParsing="false" onAction="#painettuMenuSulje" text="Sulje" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Muokkaa">
+					<items>
+						<MenuItem fx:id="menuOmatTiedot" mnemonicParsing="false" onAction="#painettuMenuOmatTiedot" text="Omat tiedot" />
+						<MenuItem fx:id="menuPoista" mnemonicParsing="false" onAction="#painettuMenuPoista" text="Poista omat tiedot" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Apua">
+					<items>
+						<MenuItem fx:id="menuOhje" mnemonicParsing="false" onAction="#painettuMenuOhje" text="Ohje" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<left>
+		<VBox prefHeight="338.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+	</left>
+	<bottom>
+		<HBox prefHeight="37.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
+	</bottom>
+</BorderPane>
