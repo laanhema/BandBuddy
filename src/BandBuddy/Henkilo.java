@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13 Feb 2018
+ * @version 13.2.2018
  *
  */
 public class Henkilo {

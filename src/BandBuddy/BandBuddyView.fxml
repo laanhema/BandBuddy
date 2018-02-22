@@ -3,6 +3,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -16,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import BandBuddy.Henkilo?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BandBuddy.BandBuddyController">
 	<center>
 		<BorderPane prefHeight="375.0" prefWidth="564.0" BorderPane.alignment="CENTER">
@@ -25,7 +25,7 @@
 					<center>
 						<ScrollPane hmax="0.0" prefHeight="273.0" prefWidth="482.0" vmax="0.0">
 							<content>
-								<TableView prefHeight="273.0" prefWidth="576.0">
+								<TableView fx:id="tableView" onMouseClicked="#painettuTarkasteleHenkilonTietoja" prefHeight="273.0" prefWidth="576.0">
 									<columns>
 
 										<TableColumn prefWidth="215.0" text="Nimi">
@@ -52,12 +52,16 @@
 
 									</columns>
 									<items>
-										<FXCollections fx:factory="observableArrayList">
-											<Henkilo genre="Progressive Metal" instrumentti="Kitara, Basso" kaupunki="Jyväskylä" nimi="Markus Mäntymaa" />
-											<Henkilo genre="Djent" instrumentti="Kitara" kaupunki="Jyväskylä" nimi="Lauri Makkonen" />
-											<Henkilo genre="Rock" instrumentti="Laulu" kaupunki="Helsinki" nimi="Roope Kaisla" />
-											<Henkilo genre="Jazz" instrumentti="Basso" kaupunki="Espoo" nimi="Sandra Heiskanen" />
-											<Henkilo genre="EDM" instrumentti="Syna" kaupunki="Lahti" nimi="Marko Hyyppä " />
+										<FXCollections fx:factory="observableArrayList"> 
+											<Henkilo genre="Proge, Djent" instrumentti="Sähkäkitara, Sähköbasso" kaupunki="Jyväskylä" nimi="Markus Mäntymaa" />
+											<Henkilo genre="EDM, Jazz" instrumentti="Sähköpiano" kaupunki="Jyväskylä" nimi="Lauri Makkonen" />
+											<Henkilo genre="Folk" instrumentti="Sello" kaupunki="Lahti" nimi="Roope Kaisla" />
+											<Henkilo genre="Pop, EDM" instrumentti="Laulu" kaupunki="Helsinki" nimi="Sandra Heiskanen" />
+											<Henkilo genre="Jazz" instrumentti="Rummut" kaupunki="Helsinki" nimi="Marko Hyyppä" />
+											<Henkilo genre="Jazz" instrumentti="Sähköpiano" kaupunki="Helsinki" nimi="Markus Mäntymaa" />
+											<Henkilo genre="Rock" instrumentti="Rummut" kaupunki="Tampere" nimi="Nina Tenhunen" />
+											<Henkilo genre="Rock" instrumentti="Sähköbasso" kaupunki="Tampere" nimi="Topi Tenhunen" />
+											<Henkilo genre="Metal" instrumentti="Sähkökitara" kaupunki="Jyväskylä" nimi="Lassi Kuikka" />
 										</FXCollections>
 									</items>
 
@@ -92,13 +96,15 @@
 			<menus>
 				<Menu mnemonicParsing="false" text="Tiedosto">
 					<items>
+                  <MenuItem mnemonicParsing="false" onAction="#painettuMenuTallenna" text="Tallenna" />
 						<MenuItem fx:id="menuSulje" mnemonicParsing="false" onAction="#painettuMenuSulje" text="Sulje" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Muokkaa">
 					<items>
-						<MenuItem fx:id="menuOmatTiedot" mnemonicParsing="false" onAction="#painettuMenuOmatTiedot" text="Omat tiedot" />
-						<MenuItem fx:id="menuPoista" mnemonicParsing="false" onAction="#painettuMenuPoista" text="Poista omat tiedot" />
+						<MenuItem fx:id="menuUusiHenkilo" mnemonicParsing="false" onAction="#painettuMenuLisaaUusiHenkilo" text="Lisää uusi henkilö" />
+                  <MenuItem fx:id="menuMuokkaaHenkilonTietoja" mnemonicParsing="false" onAction="#painettuMenuMuokkaaHenkilonTietoja" text="Muokkaa henkilön tietoja" />
+						<MenuItem fx:id="menuPoista" mnemonicParsing="false" onAction="#painettuMenuPoista" text="Poista henkilön tiedot" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Apua">
@@ -113,6 +119,16 @@
 		<VBox prefHeight="338.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
 	</left>
 	<bottom>
-		<HBox prefHeight="37.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
+		<HBox prefHeight="37.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="LisaaHenkilo" mnemonicParsing="false" onAction="#painettuLisaaHenkilo" text="Lisää henkilö">
+               <HBox.margin>
+                  <Insets left="10.0" top="7.0" />
+               </HBox.margin></Button>
+            <Button fx:id="MuokkaaHenkilonTietoja" mnemonicParsing="false" onAction="#painettuMuokkaaHenkilonTietoja" text="Muokkaa henkilön tietoja">
+               <HBox.margin>
+                  <Insets left="10.0" top="7.0" />
+               </HBox.margin></Button>
+         </children></HBox>
 	</bottom>
 </BorderPane>
