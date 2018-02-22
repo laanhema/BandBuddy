@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 
@@ -43,6 +45,9 @@ public class BandBuddyController {
     
     @FXML
     private Button MuokkaaHenkilonTietoja;
+    
+    @FXML
+    private TextField tarkennettuHaku;
 
     @FXML
     void painettuMenuOhje(ActionEvent event) {
@@ -83,5 +88,10 @@ public class BandBuddyController {
     @FXML
     void painettuMuokkaaHenkilonTietoja(ActionEvent event) {
     	ModalController.showModal(BandBuddyController.class.getResource("editointikentta.fxml"), "BandBuddy", null, "");
+    }
+    
+    @FXML
+    void kirjoitettuTarkennettuHaku(KeyEvent event) {
+        Dialogs.showMessageDialog("Tästä voi hakea henkilöitä");
     }
 }

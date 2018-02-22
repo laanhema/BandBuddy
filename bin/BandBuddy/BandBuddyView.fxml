@@ -47,6 +47,9 @@
 										</TableColumn>
 										
 										<TableColumn prefWidth="137.0" text="Kaupunki">
+											<cellValueFactory>
+												<PropertyValueFactory property="kaupunki" />
+											</cellValueFactory>
 										</TableColumn>
 										
 
@@ -73,7 +76,7 @@
 					<top>
                   <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
                      <children>
-								<TextField nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="166.0" text="Tarkennettu haku">
+								<TextField fx:id="tarkennettuHaku" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#kirjoitettuTarkennettuHaku" prefHeight="26.0" prefWidth="166.0" promptText="Tarkennettu haku">
 									<cursor>
 										<Cursor fx:constant="DEFAULT" />
 									</cursor>
