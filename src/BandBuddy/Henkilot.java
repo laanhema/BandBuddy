@@ -1,7 +1,7 @@
 /**
  * 
  */
-package BandBuddy;
+package bandbuddy;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen

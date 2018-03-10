@@ -1,9 +1,8 @@
 /**
  * 
  */
-package BandBuddy;
+package bandbuddy;
 
-import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
@@ -17,12 +16,8 @@ public class Henkilo {
     private String vapaana;
     private String kokemus;
     private String yhteystiedot;
-    //soittonäyte tähän?
+    //entäs soittonäyte?
     
-    private SimpleStringProperty nimi = new SimpleStringProperty("");
-    private SimpleStringProperty genre = new SimpleStringProperty("");
-    private SimpleStringProperty instrumentti = new SimpleStringProperty("");
-    private SimpleStringProperty kaupunki = new SimpleStringProperty("");
     
     public Henkilo() {
         this("", "", "", "");
@@ -37,14 +32,16 @@ public class Henkilo {
      * 
      */
     public Henkilo(String nimi, String genre, String instrumentti, String kaupunki) {
+        /*
         setNimi(nimi);
         setGenre(genre);
         setInstrumentti(instrumentti);
         setKaupunki(kaupunki);
+        */
 
     }
     
-    
+    /*
     public String getNimi() {
         return nimi.get();
     }
@@ -80,7 +77,7 @@ public class Henkilo {
     public void setKaupunki(String pKaupunki) {
         kaupunki.set(pKaupunki);
     }
-
+    */
 
     
     /**

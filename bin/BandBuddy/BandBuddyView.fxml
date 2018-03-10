@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
+<?import fi.jyu.mit.fxgui.StringGrid?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -8,69 +8,21 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import BandBuddy.Henkilo?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BandBuddy.BandBuddyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bandbuddy.BandBuddyController">
 	<center>
 		<BorderPane prefHeight="375.0" prefWidth="564.0" BorderPane.alignment="CENTER">
 			<left>
 				<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="301.0" prefWidth="578.0">
 					<center>
 						<ScrollPane hmax="0.0" prefHeight="273.0" prefWidth="482.0" vmax="0.0">
-							<content>
-								<TableView fx:id="tableView" onMouseClicked="#painettuTarkasteleHenkilonTietoja" prefHeight="273.0" prefWidth="576.0">
-									<columns>
-
-										<TableColumn prefWidth="215.0" text="Nimi">
-											<cellValueFactory>
-												<PropertyValueFactory property="nimi" />
-											</cellValueFactory>
-										</TableColumn>
-
-										<TableColumn prefWidth="93.0" text="Genre">
-											<cellValueFactory>
-												<PropertyValueFactory property="genre" />
-											</cellValueFactory>
-										</TableColumn>
-
-										<TableColumn prefWidth="129.0" text="Instrumentti">
-											<cellValueFactory>
-												<PropertyValueFactory property="instrumentti" />
-											</cellValueFactory>
-										</TableColumn>
-										
-										<TableColumn prefWidth="137.0" text="Kaupunki">
-											<cellValueFactory>
-												<PropertyValueFactory property="kaupunki" />
-											</cellValueFactory>
-										</TableColumn>
-										
-
-									</columns>
-									<items>
-										<FXCollections fx:factory="observableArrayList"> 
-											<Henkilo genre="Proge, Djent" instrumentti="Sähkäkitara, Sähköbasso" kaupunki="Jyväskylä" nimi="Markus Mäntymaa" />
-											<Henkilo genre="EDM, Jazz" instrumentti="Sähköpiano" kaupunki="Jyväskylä" nimi="Lauri Makkonen" />
-											<Henkilo genre="Folk" instrumentti="Sello" kaupunki="Lahti" nimi="Roope Kaisla" />
-											<Henkilo genre="Pop, EDM" instrumentti="Laulu" kaupunki="Helsinki" nimi="Sandra Heiskanen" />
-											<Henkilo genre="Jazz" instrumentti="Rummut" kaupunki="Helsinki" nimi="Marko Hyyppä" />
-											<Henkilo genre="Jazz" instrumentti="Sähköpiano" kaupunki="Helsinki" nimi="Markus Mäntymaa" />
-											<Henkilo genre="Rock" instrumentti="Rummut" kaupunki="Tampere" nimi="Nina Tenhunen" />
-											<Henkilo genre="Rock" instrumentti="Sähköbasso" kaupunki="Tampere" nimi="Topi Tenhunen" />
-											<Henkilo genre="Metal" instrumentti="Sähkökitara" kaupunki="Jyväskylä" nimi="Lassi Kuikka" />
-										</FXCollections>
-									</items>
-
-
-								</TableView>
-							</content>
+                     <content>
+                        <StringGrid fx:id="stringGrid" prefHeight="272.0" prefWidth="576.0" rivit="test|test|test|test&#10;test|test|test|test&#10;" />
+                     </content>
 						</ScrollPane>
 					</center>
 					<top>

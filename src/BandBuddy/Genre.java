@@ -1,7 +1,7 @@
 /**
  * 
  */
-package BandBuddy;
+package bandbuddy;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
@@ -14,8 +14,7 @@ public class Genre {
      * @param args ei käytössä
      */
     public static void main(String[] args) {
-    // TODO Auto-generated method stub
-    
+        //
     }
 
 }
