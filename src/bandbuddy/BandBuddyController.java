@@ -48,7 +48,7 @@ public class BandBuddyController implements Initializable {
     
 
     @FXML void painettuMenuLisaaUusiHenkilo(ActionEvent event) {
-    	ModalController.showModal(BandBuddyController123.class.getResource("jasenenlisays.fxml"), "bandbuddy", null, "");
+    	ModalController.showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", null, "");
     }
     
     
@@ -73,7 +73,7 @@ public class BandBuddyController implements Initializable {
     
     
     @FXML void painettuLisaaHenkilo(ActionEvent event) {
-    	ModalController.showModal(BandBuddyController.class.getResource("jasenenlisays.fxml"), "bandbuddy", null, "");
+    	ModalController.showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", null, "");
     }
     
     

@@ -20,8 +20,10 @@ public class BandBuddyMain extends Application {
             final Pane root = ldr.load();
             final BandBuddyController bandbuddyCtrl = (BandBuddyController) ldr.getController();
             
+            
             BandBuddy bandbuddy = new BandBuddy();
             bandbuddyCtrl.setBandBuddy(bandbuddy);
+            
             
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("bandbuddy.css").toExternalForm());

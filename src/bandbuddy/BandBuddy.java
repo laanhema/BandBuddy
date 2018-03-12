@@ -19,7 +19,7 @@ public class BandBuddy {
      * Parametriton konstruktori BandBuddylle
      */
     public BandBuddy() {
-        // ehkä tarpeen
+        //
     }
     
     
