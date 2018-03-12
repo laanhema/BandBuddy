@@ -4,6 +4,7 @@
 package bandbuddy;
 
 /**
+ * Genre-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
  * @version 13 Feb 2018
  *

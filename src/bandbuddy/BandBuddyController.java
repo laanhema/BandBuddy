@@ -1,42 +1,54 @@
 package bandbuddy;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 22.2.2018
+ * @version 12.03.2018
  *
  */
-public class BandBuddyController {
+//@SuppressWarnings("unused")
+public class BandBuddyController implements Initializable {
     
-    @FXML private MenuItem menuSulje;
-    @FXML private MenuItem menuTallenna;
-    @FXML private MenuItem menuUusiHenkilo;    
-    @FXML private MenuItem menuMuokkaaHenkilonTietoja;
-    @FXML private MenuItem menuPoista;
-    @FXML private MenuItem menuOhje;
-    @FXML private Button LisaaHenkilo;
-    @FXML private Button MuokkaaHenkilonTietoja;
-    @FXML private TextField tarkennettuHaku;
-    @FXML private StringGrid<?> stringGrid;
+    private BandBuddy               bandbuddy;
+    @FXML private MenuItem          menuSulje;
+    @FXML private MenuItem          menuTallenna;
+    @FXML private MenuItem          menuUusiHenkilo;    
+    @FXML private MenuItem          menuMuokkaaHenkilonTietoja;
+    @FXML private MenuItem          menuPoista;
+    @FXML private MenuItem          menuOhje;
+    @FXML private Button            LisaaHenkilo;
+    @FXML private Button            MuokkaaHenkilonTietoja;
+    @FXML private TextField         tarkennettuHaku;
+    @FXML private StringGrid<String> stringGrid;
     
-    @FXML void painettuMenuOhje(ActionEvent event) {
+ 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        alustaStringGrid();
+    }
+    
+    
+    @FXML void painettuMenuOhje( ActionEvent event) {
     	 Dialogs.showMessageDialog("Tästä näkee lisätietoja");
     }
     
 
     @FXML void painettuMenuLisaaUusiHenkilo(ActionEvent event) {
-    	ModalController.showModal(BandBuddyController.class.getResource("jasenenlisays.fxml"), "bandbuddy", null, "");
+    	ModalController.showModal(BandBuddyController123.class.getResource("jasenenlisays.fxml"), "bandbuddy", null, "");
     }
     
     
@@ -82,6 +94,36 @@ public class BandBuddyController {
     @FXML void kirjoitettuTarkennettuHaku(KeyEvent event) {
         Dialogs.showMessageDialog("Tästä voi hakea henkilöitä");
     }
-    
+
+
+    /**
+     * Liittää luokan BandBuddyController-luokkaan
+     * @param bandbuddy     luokka mikä halutaan liittää
+     */
+    public void setBandBuddy(BandBuddy bandbuddy) {
+        this.bandbuddy = bandbuddy;
+    }
+
+
+    /**
+     * Alustaa StringGridin
+     */
+    public void alustaStringGrid() {
+        stringGrid.clear();
+        String[] kolumnit = new String[4];
+        kolumnit[0] = "Nimi";
+        kolumnit[1] = "Genre";
+        kolumnit[2] = "Instrumentti";
+        kolumnit[3] = "Kaupunki";
+        stringGrid.initTable(kolumnit); 
+        stringGrid.setColumnWidth(0, 244);
+        for (int i = 1; i < kolumnit.length; i++) {
+            stringGrid.setColumnWidth(i, 110);
+        }
+        stringGrid.disableColumnReOrder();
+        stringGrid.setTableMenuButtonVisible(true);
+        //stringGrid.setSortable(-1, false);
+    }
+   
     
 }

@@ -4,6 +4,7 @@
 package bandbuddy;
 
 /**
+ * Instrumentti-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
  * @version 7 Mar 2018
  *
