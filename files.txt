@@ -34,18 +34,19 @@ src/bandbuddy/fxml/HenkilonLisaysController.java = ohjain joka käsittelee henki
 src/BandBuddy/fxml/henkilonmuokkaus.fxml = ikkuna jossa muokataan henkilön tietoja
 src/bandbuddy/fxml/HenkilonMuokkausController.java = ohjain joka käsittelee henkilön-muokkaus -ikkunan tapahtumat
 src/BandBuddy/fxml/tietokentta.fxml = ikkuna jossa näkyy valitun henkilön tiedot
-
-
 =
 = <h3>Luokat</h3>
 src/bandbuddy/BandBuddy.java = luokka joka liittää alemmat tietorakenteet controlleriin
-
-
 src/bandbuddy/Genre.java = Yksittäinen genre
-src/bandbuddy/Genret.java = Luettelo genreistä
+src/bandbuddy/Genre2.java = Lista genreistä
+src/bandbuddy/Genret.java = Yksittäinen luokka joka liittää henkilön id:n ja genren id:n
+src/bandbuddy/Genret2.java = Lista genret-luokan alkioista
 src/bandbuddy/Henkilo.java = Yksittäinen henkilö
-src/bandbuddy/Henkilo.java = Luettelo henkilöistä
-
+src/bandbuddy/Henkilot.java = Taulukko henkilöistä
+src/bandbuddy/Instrumentti.java = Yksittäinen instrumentti
+src/bandbuddy/Instrumentti2.java = Lista instrumenteista
+src/bandbuddy/Instrumentit.java = Yksittäinen luokka joka liittää henkilön id:n ja instrumentin id:n
+src/bandbuddy/Instrumentit2.java = Lista instrumentit-luokan alkioista
 =
 = <h3>Testit</h3>
 src/bandbuddy/testit/HenkiloTest.java = Henkilö-luokan testit
