@@ -10,6 +10,8 @@ package bandbuddy;
  */
 public class BandBuddy {
     private Henkilot henkilot = new Henkilot();
+    private final Instrumentit instrumentit = new Instrumentit();
+    private final Instrumentti instrumentti = new Instrumentti();
     
     
     /**
@@ -51,4 +53,24 @@ public class BandBuddy {
         bandbuddy.lisaa(testiHenkilo2);
         bandbuddy.tulosta();
     }
+    
+    
+    /** 
+     * Lisää instrumentin
+     * @param soitin    soitin
+     */
+    public void lisaa(Instrumentti2 soitin) {
+        instrumentti.lisaa(soitin);
+    }
+    
+    
+    /**
+     * Liittää instrumentin henkilöön
+     * @param soittaja  soittaja
+     */
+    public void lisaa(Instrumentit2 soittaja) {
+        instrumentit.lisaa(soittaja);
+    }
+    
+
 }
