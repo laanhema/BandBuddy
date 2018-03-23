@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project ht">
+<project default="create_run_jar" name="Create Runnable Jar for Project htohj2">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <!--define folder properties-->
     <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="D:/Lauri/eclipse workspace"/>
+    <property name="dir.workspace" value="C:/MyTemp/laanhema/workspace"/>
     <property name="dir.jarfile" value="${dir.buildfile}"/>
     <target name="create_run_jar">
         <jar destfile="${dir.jarfile}/bandbuddy.jar" filesetmanifest="mergewithoutmain">
@@ -13,23 +13,23 @@
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="${dir.jarfile}/bin"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/comtestplug_1.0.7.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/fxgui.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/Ali.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.opentest4j_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.apiguardian_1.0.0.v20170910-2246.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="//fileservices.ad.jyu.fi/homes/laanhema/Downloads/comtestplug_1.0.7.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="//fileservices.ad.jyu.fi/homes/laanhema/Downloads/Ali.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="//fileservices.ad.jyu.fi/homes/laanhema/Downloads/fxgui.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.opentest4j_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.apiguardian_1.0.0.v20170910-2246.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/devel/ee472/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
         </jar>
     </target>
 </project>
