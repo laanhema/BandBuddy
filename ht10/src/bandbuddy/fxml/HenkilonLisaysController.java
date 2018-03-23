@@ -20,6 +20,8 @@ import fi.jyu.mit.ohj2.Mjonot;
  */
 public class HenkilonLisaysController implements ModalControllerInterface<Henkilo> {
     private Henkilo kasiteltavaHenkilo;
+    // private String a;
+    // private Instrumentti kasiteltavaInstrumentti;
     @FXML private TextField nimiKentta;
     @FXML private TextField ikaKentta;
     @FXML private TextField sukupuoliKentta;
@@ -49,21 +51,30 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
      */
     public void lisaaHenkilo() {
         kasiteltavaHenkilo.rekisteroi();
+        
         kasiteltavaHenkilo.setNimi(nimiKentta.getText());
         kasiteltavaHenkilo.setIka(Mjonot.erotaInt(ikaKentta.getText(), 0));
         kasiteltavaHenkilo.setSukupuoli(sukupuoliKentta.getText());
         kasiteltavaHenkilo.setPaikkakunta(paikkakuntaKentta.getText());
         Instrumentti uusi = new Instrumentti(instrumentitKentta.getText());
+        // String a = instrumentitKentta.getText();
+        BandBuddyController.getInstrumentti(instrumentitKentta.getText());
         uusi.rekisteroi();
-        HenkiloJaInstrumentti u= new HenkiloJaInstrumentti(kasiteltavaHenkilo.getId(),uusi.getTunnusNro());
-        //lisaa(u);
-        //kasiteltavaHenkilo.setGenret(genretKentta.getText());
+        uusi.tulosta(System.out);
+        // kasiteltavaInstrumentti.rekisteroi();
+        // kasiteltavaInstrumentti.tulosta(System.out);
+        // HenkiloJaInstrumentti u= new HenkiloJaInstrumentti(kasiteltavaHenkilo.getId(),uusi.getTunnusNro());
+        // lisaa(u);
+        // kasiteltavaHenkilo.setGenret(genretKentta.getText());
         kasiteltavaHenkilo.setVapaana(vapaanaKentta.getText());
         kasiteltavaHenkilo.setKokemus(kokemusKentta.getText());
         kasiteltavaHenkilo.setYhteystiedot(yhteystiedotKentta.getText());
     }
 
-
+ //   public String getA() {
+     //   return a;
+ //   }
+    
     @Override
     public Henkilo getResult() {
         return null;
@@ -75,19 +86,26 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
         //
     }
 
-
     @Override
     public void setDefault(Henkilo uusi) {
         kasiteltavaHenkilo = uusi;
+        // kasiteltavaInstrumentti = uusiInstrumentti;
+    }
+    
+    
+    public void setDefault(Instrumentti uusi) {
+     //   kasiteltavaInstrumentti = uusi;
+        // kasiteltavaInstrumentti = uusiInstrumentti;
     }
     
     
     /**
      * @param modalityStage x
      * @param uusi x
+     * @param uusiInstrumentti x
      * @return x
      */
-    public static Henkilo avaaLisaaHenkilo(Stage modalityStage, Henkilo uusi) {
+    public static Henkilo avaaLisaaHenkilo(Stage modalityStage, Henkilo uusi, Instrumentti uusiInstrumentti) {
         return ModalController.<Henkilo, HenkilonLisaysController>showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", modalityStage, uusi, null);
     }
     

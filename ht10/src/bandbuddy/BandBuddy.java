@@ -63,6 +63,8 @@ public class BandBuddy {
     public String soitin(int tunnusnro) {
     	return instrumentit.soitin(tunnusnro);
     }
+    
+    
     /**
      * @param args ei käytössä
      */
@@ -79,21 +81,25 @@ public class BandBuddy {
       //  bandbuddy.tulosta();
         
         int id1 = testiHenkilo1.getId();
-        int id2 = testiHenkilo2.getId();
+        // int id2 = testiHenkilo2.getId();
         
         HenkiloJaInstrumentti soittaja = new HenkiloJaInstrumentti(id1); 
         soittaja.vastaaKitaranSoittajaa(id1);
         Instrumentti soitin = new Instrumentti("kitara");
         Instrumentti soitin2 = new Instrumentti("basso");
+        Instrumentti soitin3 = new Instrumentti("rummut");
         
         soitin.rekisteroi();
         soitin2.rekisteroi();
+        soitin3.rekisteroi();
         bandbuddy.lisaa(soitin);
         bandbuddy.lisaa(soitin2);
+        bandbuddy.lisaa(soitin3);
        // bandbuddy.tulosta();
         
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin);
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin2);
+        bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin3);
         
         List<HenkiloJaInstrumentti> hlosoittimet = bandbuddy.soittimet(testiHenkilo1.getId());
         List<String> hlosoittimet1= new ArrayList<String>();

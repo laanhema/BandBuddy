@@ -85,6 +85,15 @@ public class Instrumentti {
     }
 	
 	
+	/**
+	 * Asettaa instrumentille nimen
+	 * @param merkkijono   asetettava nimi
+	 */
+	public void setNimi(String merkkijono) {
+	    this.instrumentti = merkkijono;
+	}
+	
+	
 	 /**
 	 * Tulostaa jäsenen tiedot
 	 * @param os tietovirta johon tulostetaan

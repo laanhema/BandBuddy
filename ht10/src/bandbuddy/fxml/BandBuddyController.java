@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import bandbuddy.BandBuddy;
 import bandbuddy.Henkilo;
+import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.StringGrid;
@@ -24,6 +25,7 @@ import javafx.scene.input.KeyEvent;
  */
 public class BandBuddyController implements Initializable {
     private BandBuddy                   bandbuddy;
+    private static String               instrumentti;
     @FXML private MenuItem              menuSulje;
     @FXML private MenuItem              menuTallenna;
     @FXML private MenuItem              menuUusiHenkilo;    
@@ -116,7 +118,7 @@ public class BandBuddyController implements Initializable {
 
         
         kolumnit[0] = "nimi";
-        kolumnit[1] = "id";
+        kolumnit[1] = "instrumentti";
         kolumnit[2] = "ikä";
         kolumnit[3] = "kaupunki";
         kolumnit[4] = "sukupuoli";
@@ -161,18 +163,29 @@ public class BandBuddyController implements Initializable {
     private void uusiHenkilo() {
         Henkilo uusi = new Henkilo();
         bandbuddy.lisaa(uusi);
+        Instrumentti uusiInstrumentti = new Instrumentti();
         // uusi.taytaValiaikaisetTiedot();
-        HenkilonLisaysController.avaaLisaaHenkilo(null, uusi);
-        lisaaStringGridiin(uusi);
+        HenkilonLisaysController.avaaLisaaHenkilo(null, uusi, uusiInstrumentti);
+        uusiInstrumentti.setNimi(instrumentti);
+        lisaaStringGridiin(uusi, uusiInstrumentti);
     }
    
+    /**
+     * Palauttaa instrumentin
+     * @param merkkijono    instrumentti
+     */
+    public static void getInstrumentti(String merkkijono) {
+        instrumentti = merkkijono;
+    }
+    
     
     /**
      * Lisää henkilön StringGridiin
      * @param henkilo x
+     * @param instrumentti x
      */
-    public void lisaaStringGridiin(Henkilo henkilo) {
-        stringGrid.add(henkilo.getNimi(), "" + henkilo.getId(), "" + henkilo.getIka(), henkilo.getPaikkakunta(), henkilo.getSukupuoli(), henkilo.getKokemus(), henkilo.getVapaana(), henkilo.getYhteystiedot());
+    public void lisaaStringGridiin(Henkilo henkilo, Instrumentti instrumentti) {
+        stringGrid.add(henkilo.getNimi(), instrumentti.getInstrumentti(), "" + henkilo.getIka(), henkilo.getPaikkakunta(), henkilo.getSukupuoli(), henkilo.getKokemus(), henkilo.getVapaana(), henkilo.getYhteystiedot());
     }
     
     
