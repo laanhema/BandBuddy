@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import bandbuddy.Henkilo;
-import bandbuddy.HenkiloJaInstrumentti;
-import bandbuddy.HenkilotJaInstrumentit;
 import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
@@ -16,7 +14,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13.03.2018
+ * @version 03.04.2018
  */
 public class HenkilonLisaysController implements ModalControllerInterface<Henkilo> {
     private Henkilo kasiteltavaHenkilo;
@@ -35,15 +33,15 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     @FXML private Button henkilonLisaysPeruuta;
     
     
-    @FXML
-    void henkilonLisaysLisaaJasenPainettu(ActionEvent event) {
+    @FXML void henkilonLisaysLisaaJasenPainettu(ActionEvent event) {
         lisaaHenkilo();
         ModalController.closeStage(henkilonLisaysLisaaJasen);
+        event.consume();
     }
     
-    @FXML
-    void henkilonLisaysPeruutaPainettu(ActionEvent event) {
+    @FXML void henkilonLisaysPeruutaPainettu(ActionEvent event) {
         ModalController.closeStage(henkilonLisaysPeruuta);
+        event.consume();
     }
     
     /**
@@ -66,6 +64,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
         kasiteltavaHenkilo.setVapaana(vapaanaKentta.getText());
         kasiteltavaHenkilo.setKokemus(kokemusKentta.getText());
         kasiteltavaHenkilo.setYhteystiedot(yhteystiedotKentta.getText());
+        
     }
 
  //   public String getA() {
@@ -82,25 +81,20 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     public void handleShown() {
         //
     }
+    
 
     @Override
     public void setDefault(Henkilo uusi) {
         kasiteltavaHenkilo = uusi;
         // kasiteltavaInstrumentti = uusiInstrumentti;
     }
-    
-    
-    public void setDefault(Instrumentti uusi) {
-     //   kasiteltavaInstrumentti = uusi;
-        // kasiteltavaInstrumentti = uusiInstrumentti;
-    }
-    
+   
     
     /**
-     * @param modalityStage x
-     * @param uusi x
-     * @param uusiInstrumentti x
-     * @return x
+     * @param modalityStage     mille stagelle ollaan modaalisia
+     * @param uusi              uusi henkilö jota käsitellään
+     * @param uusiInstrumentti  uusi instrumentti
+     * @return                  modalcontrolleri
      */
     public static Henkilo avaaLisaaHenkilo(Stage modalityStage, Henkilo uusi, Instrumentti uusiInstrumentti) {
         return ModalController.<Henkilo, HenkilonLisaysController>showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", modalityStage, uusi, null);

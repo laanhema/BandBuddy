@@ -6,7 +6,7 @@ package bandbuddy;
 /**
  * Genre-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13.03.2018
+ * @version 03.04.2018
  */
 public class Genre {
 

@@ -10,7 +10,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13.03.2018
+ * @version 03.04.2018
  */
 public class BandBuddyMain extends Application {
     @Override
@@ -23,7 +23,8 @@ public class BandBuddyMain extends Application {
             
             BandBuddy bandbuddy = new BandBuddy();
             bandbuddyCtrl.setBandBuddy(bandbuddy);
-            
+            bandbuddy.lueTiedostosta();
+            bandbuddyCtrl.laitaHenkilotTaulukkoStringGridiin();
             
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("bandbuddy.css").toExternalForm());

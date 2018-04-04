@@ -5,22 +5,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bandbuddy.BandBuddy;
 import bandbuddy.Henkilo;
+import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
-import fi.jyu.mit.ohj2.Mjonot;
-
 
 /**
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13.03.2018
+ * @version 03.04.2018
  */
-@SuppressWarnings("unused")
-public class HenkilonMuokkausController implements ModalControllerInterface<String>, Initializable {
+public class HenkilonMuokkausController implements ModalControllerInterface<BandBuddy>, Initializable {
     @FXML private Button henkilonMuokkausTallenna;
     @FXML private Button henkilonMuokkausPeruuta;
     @FXML private TextField nimiKentta;
@@ -32,22 +32,25 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Stri
     @FXML private TextField vapaanaKentta;
     @FXML private TextField kokemusKentta;
     @FXML private TextField yhteystiedotKentta;
+    private BandBuddy bandbuddy;
 
     
     @FXML
     void henkilonMuokkausTallennaPainettu(ActionEvent event) {
         ModalController.closeStage(henkilonMuokkausTallenna);
+        event.consume();
     }
     
     
     @FXML
     void henkilonMuokkausPeruutaPainettu(ActionEvent event) {
         ModalController.closeStage(henkilonMuokkausPeruuta);
+        event.consume();
     }
 
     
     @Override
-    public String getResult() {
+    public BandBuddy getResult() {
         return null;
     }
 
@@ -59,14 +62,25 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Stri
 
     
     @Override
-    public void setDefault(String arg0) {
-        //
+    public void setDefault(BandBuddy bandbuddy) {
+        this.bandbuddy = bandbuddy;
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         //
+    }
+    
+    
+    /**
+     * @param modalityStage               mille stagelle ollaan modaalisia
+     * @param valittuHenkilo              uusi henkilö jota käsitellään
+     * @param bandbuddy                   bandbuddy
+     * @return                            modalcontrolleri
+     */
+    public static Henkilo avaaHenkilonMuokkaus(Stage modalityStage, Henkilo valittuHenkilo, BandBuddy bandbuddy) {
+        return ModalController.<Henkilo, HenkilonLisaysController>showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", modalityStage, valittuHenkilo, null);
     }
     
     

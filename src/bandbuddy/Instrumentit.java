@@ -4,6 +4,7 @@
 package bandbuddy;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * Instrumentti-luokka
@@ -13,7 +14,10 @@ import java.util.*;
  *
  */
 public class Instrumentit implements Iterable<Instrumentti> {
-	// private String tiedosto = "";
+	
+	// private boolean muutettu = false;
+	private String tiedostoPerus = "instrumentit.dat";
+	
 	/* Instrumenttien lista */
 	private final Collection<Instrumentti> alkiot = new ArrayList<Instrumentti>();
 	
@@ -75,6 +79,74 @@ public class Instrumentit implements Iterable<Instrumentti> {
     	alkiot.add(soitin);
     }
     
+    
+    /*
+     
+     
+    public void tallenna() {
+        if ( !muutettu ) return;
+
+        File fbak = new File(getVara());
+        File ftied = new File(getTiedostoPerus());
+        fbak.delete(); 
+        ftied.renameTo(fbak); 
+
+        try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
+            for (Instrumentti in : this) {
+                fo.println(in.toString());
+            }
+        } catch ( FileNotFoundException ex ) {
+        	System.err.println("Tiedosto " + ftied.getName() + " ei aukea");
+        } catch ( IOException ex ) {
+        	System.err.println("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
+        }
+
+        muutettu = false;
+    }
+    */
+
+    
+    /**
+     * Lukee instrumentit tiedostosta
+     */
+    public void lueTiedostosta() {
+    	try ( BufferedReader fi = new BufferedReader(new FileReader(this.tiedostoPerus)) ) {
+            String rivi;
+            while ( (rivi = fi.readLine()) != null ) {
+                rivi = rivi.trim();
+                if ( "".equals(rivi) || rivi.charAt(0) == ';' ) continue;
+                if (rivi.contains("Ã¤") ) rivi = rivi.replaceAll("Ã¤", "ä");
+                if (rivi.contains("Ã¶") ) rivi = rivi.replaceAll("Ã¶", "ö");
+                Instrumentti in = new Instrumentti();
+                in.parse(rivi); 
+                lisaa(in);
+            }
+            // muutettu = false;
+
+        } catch ( FileNotFoundException fnfe ) {
+           System.err.println("tiedoston lukeminen ei onnistunut" + fnfe.getMessage());
+        } catch ( IOException e ) {
+            System.err.println("Ongelmia tiedoston kanssa: " + e.getMessage());
+        }
+    }
+        
+    
+    /**
+     * Lukee tietorakenteen alkiot ja luo sen mukaa rivejä tiedostoon
+     */
+    public void kirjoitaTiedostoon() {
+        String kohdetiedostonNimi = this.tiedostoPerus;
+        
+        try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
+            fo.println(";nid|instrumentti|");
+            for (Instrumentti in : this.alkiot) {
+                fo.println(in.toString());
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("Tiedostoon kirjoittaminen ei onnistunut! " + fnfe.getMessage());
+        }
+    }
+    
 
     /**
      * @return instrumentin listan koko
@@ -101,4 +173,5 @@ public class Instrumentit implements Iterable<Instrumentti> {
 		return alkiot.iterator();
 	}
 
+	
 }

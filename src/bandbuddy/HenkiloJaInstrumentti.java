@@ -5,6 +5,8 @@ package bandbuddy;
 
 import java.io.*;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * Instrumentit2-luokka
  * Luokka joka liittää instrumentin ja jäsenen idt keskenään.
@@ -14,7 +16,7 @@ import java.io.*;
  */
 public class HenkiloJaInstrumentti {
 	private int tunnusNro;
-	private int jasenNro;
+	private int henkilonNro;
 	private int instrumentinNro;
 	
 	private static int seuraavaNro = 1;
@@ -43,7 +45,7 @@ public class HenkiloJaInstrumentti {
 	 * @param jasenro jäsenen viite
 	 */
 	public HenkiloJaInstrumentti(int jasenro) {
-		this.jasenNro = jasenro;
+		this.henkilonNro = jasenro;
 	}
 	
 	
@@ -53,7 +55,7 @@ public class HenkiloJaInstrumentti {
 	 * @param soittimenId		soittimen id
 	 */
 	public HenkiloJaInstrumentti(int henkilonId, int soittimenId) {
-		this.jasenNro = henkilonId;
+		this.henkilonNro = henkilonId;
 		this.instrumentinNro = soittimenId;
 	}
 	
@@ -63,7 +65,7 @@ public class HenkiloJaInstrumentti {
 	 * @param nro soittajan numero
 	 */
 	public void vastaaKitaranSoittajaa(int nro) {
-          jasenNro = nro;
+          henkilonNro = nro;
           instrumentinNro = 1;
     }
 	
@@ -73,14 +75,14 @@ public class HenkiloJaInstrumentti {
 	 * @return jäsenen viitenumeron
 	 */
 	public int getHenkilonNro() {
-		return this.jasenNro;
+		return this.henkilonNro;
 	}
 	
 	
 	/**
 	 * @return palauttaa Instrumentit2 viitenumeron
 	 */
-	public int getTunnusNroT() {
+	public int getTunnusNro() {
 		return tunnusNro;
 	}
 	
@@ -93,7 +95,6 @@ public class HenkiloJaInstrumentti {
 	}
 	/**
 	 * antaa seuraavan tunnusnumeron insrumentin ja sen soittajan viittelle.
-	 * @return uusi tunnusnumero
      * @example
      * <pre name="test">
      *   HenkiloJaInstrumentti soittaja= new HenkiloJaInstrumentti(1);
@@ -104,10 +105,21 @@ public class HenkiloJaInstrumentti {
      *   soittaja2.getTunnusNroT() === 2;
      * </pre>
      */
-	public int rekisteroi() {
+	public void rekisteroi() {
 		tunnusNro = seuraavaNro++;
-		return tunnusNro;
 	}
+	
+	
+    /**
+     * Laittaa alkion tunnusNro:ksi annetun numeron
+     * @param numero        laitettava numero
+     */
+    public void rekisteroi(int numero) {
+        if (this.tunnusNro > 0)
+            return;
+        this.tunnusNro = numero;
+        seuraavaNro++;
+    }
 	
 	
 	/**
@@ -115,8 +127,33 @@ public class HenkiloJaInstrumentti {
 	 * @param out tietovirta johon tulostetaan
 	 */
 	public void tulosta(PrintStream out) {
-        out.println(jasenNro);
+        out.println(henkilonNro);
       }
+	
+	
+	/**
+	 * muuttaa henkilön ja instrumentin yhteyden tiedot merkkijonoksi
+	 */
+	@Override
+	public String toString() {
+		return "" + getTunnusNro() + "|" + getHenkilonNro() + "|" + getInstrumentinNro() + "|";	
+	}
+	
+	/**
+	 * @param s tiedoston rivi josta otetaan tiedot
+	 */
+	public void parse(String s) {
+		StringBuffer sb = new StringBuffer(s);
+		this.rekisteroi(Mjonot.erota(sb, '|', getTunnusNro()));
+		henkilonNro = Mjonot.erota(sb, '|', getHenkilonNro());
+		instrumentinNro = Mjonot.erota(sb, '|', getInstrumentinNro());
+	}
+	
+	
+	@Override
+	public int hashCode() {
+	    return tunnusNro;
+	}
 	
 	
 	/**
@@ -127,5 +164,5 @@ public class HenkiloJaInstrumentti {
         tulosta(new PrintStream(os));
     }
 
+	
 }
-

@@ -3,17 +3,27 @@
  */
 package bandbuddy;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * Henkilöt-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 13.03.2018
+ * @version 03.04.2018
  */
 public class Henkilot {
-    private Henkilo[]   henkilotTaulukko;
-    private int         kokoLkm             = 0;
-    private int         lkm                 = 0;
-    
-    
+    private Henkilo[] henkilotTaulukko;
+    private int kokoLkm = 0;
+    private int lkm = 0;
+    private String tiedostonNimi = "henkilot.dat";
+
+
     /**
      * Parametriton konstruktori Henkilot-luokalle
      * luo 5-alkion kokoisen taulukon
@@ -22,8 +32,8 @@ public class Henkilot {
         this.henkilotTaulukko = new Henkilo[5];
         this.kokoLkm = henkilotTaulukko.length;
     }
-    
-    
+
+
     /**
      * Palauttaa taulukon sisällä olevien henkilöiden määrän
      * @return      taulukon sisällä olevien henkilöiden määrä
@@ -33,11 +43,11 @@ public class Henkilot {
      * testiTaulukko1.getLkm() === 0;
      * </pre>
      */
-    public int getLkm( ) {
+    public int getLkm() {
         return this.lkm;
     }
-    
-    
+
+
     /**
      * Palauttaa taulukon koon
      * @return      taulukon koko
@@ -47,11 +57,19 @@ public class Henkilot {
      * testiTaulukko1.getKokoLkm() === 5;
      * </pre>
      */
-    public int getKokoLkm( ) {
+    public int getKokoLkm() {
         return this.kokoLkm;
     }
     
     
+    /**
+     * @return henkilöt taulukko
+     */
+    public Henkilo[] getTaulukko() {
+        return this.henkilotTaulukko;
+    }
+
+
     /**
      * Lisää henkilön taulukkoon
      * @param lisattavaHenkilo      lisättävä henkilö
@@ -66,11 +84,12 @@ public class Henkilot {
      * </pre>
      */
     public void lisaa(Henkilo lisattavaHenkilo) {
-        if (lkm == this.kokoLkm ) this.kloonaa();  // luodaan isompi taulukko jos täynnä
+        if (lkm == this.kokoLkm)
+            this.kloonaa(); // luodaan isompi taulukko jos täynnä
         henkilotTaulukko[lkm++] = lisattavaHenkilo;
     }
-    
-    
+
+
     /**
      * Palauttaa tietyssä taulukon paikassa olevan henkilön
      * @param indeksi                       henkilön paikka
@@ -101,13 +120,13 @@ public class Henkilot {
      * testiTaulukko1.getHenkilo(10) === eiLisattu; #THROWS IndexOutOfBoundsException
      */
     public Henkilo getHenkilo(int indeksi) throws IndexOutOfBoundsException {
-        if ( indeksi < 0 || indeksi > this.getLkm() ) {
-            throw new IndexOutOfBoundsException("Virheellinen indeksi.");  
+        if (indeksi < 0 || indeksi > this.getLkm()) {
+            throw new IndexOutOfBoundsException("Virheellinen indeksi.");
         }
         return this.henkilotTaulukko[indeksi];
     }
-    
-   
+
+
     /**
      * Tekee isomman taulukon ja kopioi edellisen taulukon alkiot siihen
      * Henkilot testiTaulukko1 = new Henkilot();
@@ -138,15 +157,15 @@ public class Henkilot {
      * testiTaulukko.1getKokoLkm()          === 20;
      */
     public void kloonaa() {
-        Henkilo[] klooni = new Henkilo[this.lkm*2];
+        Henkilo[] klooni = new Henkilo[this.lkm * 2];
         for (int i = 0; i < this.henkilotTaulukko.length; i++) {
             klooni[i] = this.getHenkilo(i);
         }
         this.henkilotTaulukko = klooni;
         this.kokoLkm = klooni.length;
     }
-    
-    
+
+
     /**
      * Tulostaa henkilöt-taulukon kokonaisuudessaan
      */
@@ -155,8 +174,69 @@ public class Henkilot {
             henkilotTaulukko[i].tulosta(System.out);
         }
     }
-   
     
+    
+    /**
+     * Lukee tiedoston rivit ja luo sen mukaa henkilöitä taulukkoon
+     */
+    public void lueTiedostosta() {
+        String luettavanTiedostonNimi = this.tiedostonNimi;
+        String tiedostonRivi = "";
+        // StringBuilder tiedostonRiviSB;
+        // StringBuilder idSB;
+        // StringBuilder ikaSB;
+        
+        try ( Scanner fi = new Scanner(new FileInputStream(new File(luettavanTiedostonNimi))) ) {
+            while (fi.hasNextLine()) {
+                tiedostonRivi = fi.nextLine();
+                if (!tiedostonRivi.startsWith(";")) { // jos rivi alkaa ; niin ei tehdä mitään (aloitusrivi)
+                if (tiedostonRivi.contains("Ã¤") ) tiedostonRivi = tiedostonRivi.replaceAll("Ã¤", "ä");
+                Henkilo uusiHenkilo = new Henkilo();
+                uusiHenkilo.parse(tiedostonRivi);
+                
+                /*
+                tiedostonRiviSB = new StringBuilder(tiedostonRivi);
+                idSB = new StringBuilder(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.rekisteroi(Mjonot.erotaInt(idSB, -1));
+                
+                uusiHenkilo.setNimi(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                
+                ikaSB = new StringBuilder(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.setIka(Mjonot.erotaInt(ikaSB, -1));
+                
+                uusiHenkilo.setSukupuoli(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.setPaikkakunta(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.setVapaana(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.setKokemus(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                uusiHenkilo.setYhteystiedot(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
+                */
+                lisaa(uusiHenkilo);
+                
+                }
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("Tiedoston lukeminen ei onnistunut! " + fnfe.getMessage());
+        }
+    }
+    
+    
+    /**
+     * Lukee taulukon alkiot ja luo sen mukaa rivejä tiedostoon
+     */
+    public void kirjoitaTiedostoon() {
+        String kohdetiedostonNimi = this.tiedostonNimi;
+        
+        try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
+            fo.println(";id|nimi|ikä|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot|");
+            for (int i = 0; i < this.lkm; i++) {
+                fo.println(this.getHenkilo(i).toString());
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("Tiedostoon kirjoittaminen ei onnistunut! " + fnfe.getMessage());
+        }
+    }
+    
+
     /**
      * @param args ei käytössä
      */
@@ -169,7 +249,7 @@ public class Henkilot {
         Henkilo testiHenkilo2 = new Henkilo();
         testiHenkilo2.rekisteroi();
         testiHenkilo2.taytaValiaikaisetTiedot();
-        
+
         henkilot.lisaa(testiHenkilo1);
         henkilot.lisaa(testiHenkilo2);
         henkilot.lisaa(testiHenkilo2);
@@ -184,5 +264,7 @@ public class Henkilot {
         henkilot.lisaa(testiHenkilo2);
         henkilot.tulosta();
         //henkilot.getHenkilo(50);
+        henkilot.lueTiedostosta();
+        henkilot.tulosta();
     }
 }

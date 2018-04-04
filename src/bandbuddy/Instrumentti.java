@@ -4,6 +4,9 @@
 package bandbuddy;
 
 import java.io.*;
+
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * Instrumentti-luokka Yksittäisten instrumenttien alkiot
  * @author Markus Mäntymaa & Lauri Makkonen
@@ -63,7 +66,6 @@ public class Instrumentti {
 		
 	/**
 	 * Asettaa seuraavan numeron instrumentin viitteelle.
-	 * @return uusi tunnusnumero.
 	 *
      * @example
      * <pre name="test">
@@ -75,9 +77,43 @@ public class Instrumentti {
      *   testi1.getTunnusNro() === 2;
      * </pre>
      */
-	public int rekisteroi() {
+	public void rekisteroi() {
 		tunnusNro = seuraavaNro++;
-		return tunnusNro;
+	}
+	
+	
+    /**
+     * Laittaa instrumentin tunnusNro:ksi annetun numeron
+     * @param numero        laitettava numero
+     */
+    public void rekisteroi(int numero) {
+        if (this.tunnusNro > 0)
+            return;
+        this.tunnusNro = numero;
+        seuraavaNro++;
+    }
+	
+	
+	/**
+	 * muuttaa instrumentin tiedot merkkijonoksi
+	 */
+	@Override
+	public String toString() {
+		return "" + getTunnusNro() + "|" + getInstrumentti() + "|";
+		
+	}
+	
+	@Override
+	public int hashCode() {
+	    return tunnusNro;
+	}
+	/**
+	 * @param s tiedoston rivi josta otetaan tiedot
+	 */
+	public void parse(String s) {
+		StringBuffer sb = new StringBuffer(s);
+		this.rekisteroi(Mjonot.erota(sb, '|', getTunnusNro()));
+		setNimi(Mjonot.erota(sb, '|', getInstrumentti()));
 	}
 	
 	
