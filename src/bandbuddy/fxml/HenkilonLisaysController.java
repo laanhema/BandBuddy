@@ -123,6 +123,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
    
     
     /**
+     * Avaa henkilön lisäys -ikkunan
      * @param modalityStage     mille stagelle ollaan modaalisia
      * @param uusiHenkilo       uusi henkilö jota käsitellään
      * @param bandbuddy         bandbuddy-luokka

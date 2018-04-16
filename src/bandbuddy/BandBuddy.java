@@ -153,6 +153,17 @@ public class BandBuddy {
         return instrumentit.loytyykoInstrumenttia(etsittava);
     }
     
+    
+    /**
+     * Poistaa tietyn henkilön tietorakenteesta
+     * @param poistettavanHenkilonId    sen henkilön id joka halutaan poistaa 
+     */
+    public void poistaHenkilo(int poistettavanHenkilonId) {
+        this.henkilot.poista(poistettavanHenkilonId);
+    }
+    
+    
+    
     /**
      * Poistaa tietyn henkilön kaikki instrumentit tietorakenteesta
      * @param henkilonId        henkilön id

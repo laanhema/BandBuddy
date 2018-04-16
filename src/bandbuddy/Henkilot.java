@@ -212,7 +212,7 @@ public class Henkilot {
         String kohdetiedostonNimi = this.tiedostonNimi;
         
         try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
-            fo.println(";id|nimi|ikö|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot|");
+            fo.println(";id|nimi|ikä|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot|");
             for (int i = 0; i < this.lkm; i++) {
                 fo.println(this.getHenkilo(i).toString());
             }
@@ -221,7 +221,21 @@ public class Henkilot {
         }
     }
     
-
+    /**
+     * Poistaa henkilön tietorakenteesta
+     * @param henkilonId poistettavan henkilön id
+     */
+    public void poista(int henkilonId) {
+        // Henkilo poistettavaHenkilo = this.getHenkilo(henkilonId);
+        int id = henkilonId - 1;
+        this.lkm--;
+        for (int i = id; i < this.lkm; i++) {
+            this.henkilotTaulukko[i] = this.henkilotTaulukko[i + 1];
+        }
+        this.henkilotTaulukko[lkm] = null;
+    }
+    
+    
     /**
      * @param args ei käytössä
      */

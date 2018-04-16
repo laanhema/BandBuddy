@@ -14,7 +14,6 @@ import bandbuddy.Henkilo;
 import bandbuddy.HenkiloJaInstrumentti;
 import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.Dialogs;
-import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -68,33 +67,16 @@ public class BandBuddyController implements Initializable {
     
 
     @FXML void painettuMenuMuokkaaHenkilonTietoja(ActionEvent event) {
-        
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
-            
         HenkilonMuokkausController.avaaHenkilonMuokkaus(null, valittuHenkilo, bandbuddy);
-        // ModalController.showModal(BandBuddyController.class.getResource("henkilonmuokkaus.fxml"), "Tietojen muokkaus", null, "");
-        // otetaan valitun henkilön tiedot käyttöön ja laitetaan ne uuteen ikkunaan
-        
-        /*
-        String[] henkilonKentat = new String[7];
-        henkilonKentat[0] = valittuHenkilo.getNimi();
-        henkilonKentat[1] = "" + valittuHenkilo.getIka();
-        henkilonKentat[2] = valittuHenkilo.getSukupuoli();
-        henkilonKentat[3] = valittuHenkilo.getPaikkakunta();
-        // getInstrumentit
-        // getGenret
-        henkilonKentat[4] = valittuHenkilo.getVapaana();
-        henkilonKentat[5] = valittuHenkilo.getKokemus();
-        henkilonKentat[6] = valittuHenkilo.getYhteystiedot();
-        */
         event.consume();
     }
     
     
     @FXML void painettuMenuPoista(ActionEvent event) {
-        ModalController.showModal(
-                BandBuddyController.class.getResource("dialogi_poisto.fxml"),
-                "bandbuddy", null, "");
+        Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
+        HenkilonPoistoController.avaaHenkilonPoisto(null, valittuHenkilo, bandbuddy);
+        laitaHenkilotTaulukkoStringGridiin();
         event.consume();
     }
     
@@ -234,7 +216,7 @@ public class BandBuddyController implements Initializable {
      * Lisää henkilön henkilö-StringGridiin
      * @param henkilo   lisättävä henkilö
      */
-    public void lisaaStringGridiin(Henkilo henkilo) {
+    public void lisaaHenkiloStringGridiin(Henkilo henkilo) {
         henkiloStringGrid.add(henkilo, henkilo.getNimi(), "" + henkilo.getIka(), henkilo.getPaikkakunta(), henkilo.getSukupuoli(), henkilo.getKokemus(), henkilo.getVapaana(), henkilo.getYhteystiedot());
     }
    
@@ -256,7 +238,8 @@ public class BandBuddyController implements Initializable {
     private void uusiHenkilo() {
         Henkilo uusiHenkilo = new Henkilo();
         HenkilonLisaysController.avaaLisaaHenkilo(null, uusiHenkilo, bandbuddy);
-        if (uusiHenkilo.getId() > 0) lisaaStringGridiin(uusiHenkilo); 
+        if (uusiHenkilo.getId() > 0) lisaaHenkiloStringGridiin(uusiHenkilo); 
+        // jos henkilöä ei rekisteröity, ei lisätä sitä stringGridiin
     }
     
     
