@@ -10,10 +10,9 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * Henkilöt-luokka
+ * Henkilö-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
  * @version 03.04.2018
  */
@@ -26,7 +25,7 @@ public class Henkilot {
 
     /**
      * Parametriton konstruktori Henkilot-luokalle
-     * luo 5-alkion kokoisen taulukon
+     * luo 5-alkion kokoisen taulukon oletuksena
      */
     public Henkilot() {
         this.henkilotTaulukko = new Henkilo[5];
@@ -178,38 +177,24 @@ public class Henkilot {
     
     /**
      * Lukee tiedoston rivit ja luo sen mukaa henkilöitä taulukkoon
+     * @example
+     * <pre name="test">
+     * 
+     * 
+     * </pre>
      */
     public void lueTiedostosta() {
         String luettavanTiedostonNimi = this.tiedostonNimi;
         String tiedostonRivi = "";
-        // StringBuilder tiedostonRiviSB;
-        // StringBuilder idSB;
-        // StringBuilder ikaSB;
         
-        try ( Scanner fi = new Scanner(new FileInputStream(new File(luettavanTiedostonNimi))) ) {
+        try ( Scanner fi = new Scanner(new FileInputStream(new File(luettavanTiedostonNimi)), "ISO-8859-1") ) {
+            
             while (fi.hasNextLine()) {
                 tiedostonRivi = fi.nextLine();
                 if (!tiedostonRivi.startsWith(";")) { // jos rivi alkaa ; niin ei tehdä mitään (aloitusrivi)
-                if (tiedostonRivi.contains("Ã¤") ) tiedostonRivi = tiedostonRivi.replaceAll("Ã¤", "ä");
                 Henkilo uusiHenkilo = new Henkilo();
                 uusiHenkilo.parse(tiedostonRivi);
-                
-                /*
-                tiedostonRiviSB = new StringBuilder(tiedostonRivi);
-                idSB = new StringBuilder(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.rekisteroi(Mjonot.erotaInt(idSB, -1));
-                
-                uusiHenkilo.setNimi(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                
-                ikaSB = new StringBuilder(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.setIka(Mjonot.erotaInt(ikaSB, -1));
-                
-                uusiHenkilo.setSukupuoli(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.setPaikkakunta(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.setVapaana(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.setKokemus(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                uusiHenkilo.setYhteystiedot(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
-                */
+               
                 lisaa(uusiHenkilo);
                 
                 }
@@ -227,7 +212,7 @@ public class Henkilot {
         String kohdetiedostonNimi = this.tiedostonNimi;
         
         try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
-            fo.println(";id|nimi|ikä|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot|");
+            fo.println(";id|nimi|ikö|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot|");
             for (int i = 0; i < this.lkm; i++) {
                 fo.println(this.getHenkilo(i).toString());
             }
@@ -263,7 +248,6 @@ public class Henkilot {
         henkilot.lisaa(testiHenkilo2);
         henkilot.lisaa(testiHenkilo2);
         henkilot.tulosta();
-        //henkilot.getHenkilo(50);
         henkilot.lueTiedostosta();
         henkilot.tulosta();
     }

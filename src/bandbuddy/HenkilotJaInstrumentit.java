@@ -144,4 +144,18 @@ public class HenkilotJaInstrumentit implements Iterable<HenkiloJaInstrumentti> {
     }
     
     
+    /**
+     * Poistaa tietyn henkilön kaikki instrumentit tietorakenteesta
+     * @param henkilonId        henkilön id
+     */
+    public void poistaHenkilonInstrumentit(int henkilonId) {
+        Iterator<HenkiloJaInstrumentti> iter = this.iterator();
+        HenkiloJaInstrumentti alkio = new HenkiloJaInstrumentti();
+        while (iter.hasNext()) {
+            alkio = iter.next();
+            if (alkio.getHenkilonNro() == henkilonId) {
+                iter.remove();
+            }
+        }
+    }
 }

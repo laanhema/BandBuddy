@@ -15,16 +15,31 @@ import java.io.*;
  */
 public class Instrumentit implements Iterable<Instrumentti> {
 	
-	// private boolean muutettu = false;
-	private String tiedostoPerus = "instrumentit.dat";
+	private String tiedostonNimi = "instrumentit.dat";
 	
 	/* Instrumenttien lista */
 	private final Collection<Instrumentti> alkiot = new ArrayList<Instrumentti>();
 	
 	
     /**
+     * Instrumentit-luokan alustaminen ilman parametreja
+     */
+    public Instrumentit() {
+    }
+	
+    
+//	/**
+//	 * Toinen alustaja testaamista varten
+//	 * @param luettavaTiedosto     testitiedosto joka laitetaan attribuutiksi
+//	 */
+//    public Instrumentit(String luettavaTiedosto) {
+//        this.tiedostoPerus = luettavaTiedosto;
+//    }
+    
+    
+    /**
      * Testipääohjelma
-     * @param args ei käytössä
+     * @param args ei käytässä
      */	
     public static void main(String[] args) {
     	 Instrumentit soitinlista = new Instrumentit();
@@ -43,90 +58,87 @@ public class Instrumentit implements Iterable<Instrumentti> {
          
          
     }
+    
+    
     /**
      * Hakee kaikki instrumentit
      * @param tunnusnro toistaiseksi ei mitään
      * @return tietorakenne jossa on kaikki instrumentit.
-
      * #import java.util.*;
      * @example
+     * 
      * <pre name="test">
-     *  Instrumentit i = new Instrumentit();
-     *  Instrumentti a = new Instrumentti("kitara"); a.rekisteroi(); i.lisaa(a);
-     *  Instrumentti b = new Instrumentti("rummut"); b.rekisteroi(); i.lisaa(b);
-     *  Instrumentti c = new Instrumentti("basso"); c.rekisteroi(); i.lisaa(c);
-     *  i.soitin(1) === "kitara";
-     *  i.soitin(3) === "basso";
+     * Instrumentit i = new Instrumentit();
+     * Instrumentti a = new Instrumentti("Kitara"); 
+     * a.rekisteroi(); 
+     * i.lisaa(a);
+     * Instrumentti b = new Instrumentti("Rummut"); 
+     * b.rekisteroi(); 
+     * i.lisaa(b);
+     * Instrumentti c = new Instrumentti("Basso"); 
+     * c.rekisteroi(); 
+     * i.lisaa(c);
+     * i.getLkm() === 3;
+     * i.soitin(-1) === "ei toimi";
+     * i.soitin(1) === "Kitara";
      * </pre> 
      */
     public String soitin(int tunnusnro) {
          List<Instrumentti> kaikki = new ArrayList<Instrumentti>();
-         for (Instrumentti soitin : alkiot) {
+         for (Instrumentti soitin : this.alkiot) {
         	  kaikki.add(soitin);
          }
          for (int i = 0; i < kaikki.size(); i++) {
-              if (tunnusnro == kaikki.get(i).getTunnusNro())return kaikki.get(i).getInstrumentti();
+              if (tunnusnro == kaikki.get(i).getTunnusNro()) {
+                  return kaikki.get(i).getInstrumentti();
+              }
          }
-         return "ei toimi";        
+         return "ei toimi";
     }
     
     
     /**
-     * lisää instrumentin ja ottaa sen omistukseen tietorakenteessa
+     * lisää instrumentin tietorakenteeseen
      * @param soitin lisättävä instrumentti.
      */
     public void lisaa(Instrumentti soitin) {
-    	alkiot.add(soitin);
+    	this.alkiot.add(soitin);
     }
-    
-    
-    /*
-     
-     
-    public void tallenna() {
-        if ( !muutettu ) return;
-
-        File fbak = new File(getVara());
-        File ftied = new File(getTiedostoPerus());
-        fbak.delete(); 
-        ftied.renameTo(fbak); 
-
-        try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
-            for (Instrumentti in : this) {
-                fo.println(in.toString());
-            }
-        } catch ( FileNotFoundException ex ) {
-        	System.err.println("Tiedosto " + ftied.getName() + " ei aukea");
-        } catch ( IOException ex ) {
-        	System.err.println("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
-        }
-
-        muutettu = false;
-    }
-    */
 
     
     /**
-     * Lukee instrumentit tiedostosta
+     * Lukee instrumentit tiedostosta ja lisää ne tietorakenteeseen
+     * @example
+     * <pre name="test">
+     * #THROWS IOException
+     * #import java.io.IOException;
+     * #import fi.jyu.mit.ohj2.VertaaTiedosto;
+     * VertaaTiedosto.kirjoitaTiedosto("testi.dat", ";nid|instrumentti|\n1|Sähkökitara|\n2|Sähköbasso|\n3|Oboe|\n4|Fagotti|\n5|Saksofoni|\n");
+     * Instrumentit testiInstrumentitLuokka = new Instrumentit();
+     * testiInstrumentitLuokka.setLuettavaTiedosto("testi.dat");
+     * testiInstrumentitLuokka.lueTiedostosta();
+     * VertaaTiedosto.tuhoaTiedosto("testi.dat");
+     * testiInstrumentitLuokka.getLkm() === 5;
+     * testiInstrumentitLuokka.soitin(1) === "Sähkökitara";
+     * testiInstrumentitLuokka.soitin(2) === "Sähköbasso";
+     * testiInstrumentitLuokka.soitin(3) === "Oboe";
+     * testiInstrumentitLuokka.soitin(4) === "Fagotti";
+     * testiInstrumentitLuokka.soitin(5) === "Saksofoni";
+     * </pre>
      */
     public void lueTiedostosta() {
-    	try ( BufferedReader fi = new BufferedReader(new FileReader(this.tiedostoPerus)) ) {
+    	try ( Scanner fi = new Scanner(new FileInputStream(new File(this.tiedostonNimi)), "ISO-8859-1") ) {
             String rivi;
-            while ( (rivi = fi.readLine()) != null ) {
-                rivi = rivi.trim();
+            while (fi.hasNextLine()) {
+                rivi = fi.nextLine().trim();
                 if ( "".equals(rivi) || rivi.charAt(0) == ';' ) continue;
-                if (rivi.contains("Ã¤") ) rivi = rivi.replaceAll("Ã¤", "ä");
-                if (rivi.contains("Ã¶") ) rivi = rivi.replaceAll("Ã¶", "ö");
                 Instrumentti in = new Instrumentti();
                 in.parse(rivi); 
                 lisaa(in);
             }
-            // muutettu = false;
 
         } catch ( FileNotFoundException fnfe ) {
-           System.err.println("tiedoston lukeminen ei onnistunut" + fnfe.getMessage());
-        } catch ( IOException e ) {
-            System.err.println("Ongelmia tiedoston kanssa: " + e.getMessage());
+           System.err.println("Tiedoston lukeminen ei onnistunut " + fnfe.getMessage());
         }
     }
         
@@ -135,7 +147,7 @@ public class Instrumentit implements Iterable<Instrumentti> {
      * Lukee tietorakenteen alkiot ja luo sen mukaa rivejä tiedostoon
      */
     public void kirjoitaTiedostoon() {
-        String kohdetiedostonNimi = this.tiedostoPerus;
+        String kohdetiedostonNimi = this.tiedostonNimi;
         
         try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
             fo.println(";nid|instrumentti|");
@@ -154,15 +166,7 @@ public class Instrumentit implements Iterable<Instrumentti> {
     public int getLkm() {
     	return alkiot.size();
     }
-    
-    
-    /**
-     * Instrumentin alustaminen
-     */
-    public Instrumentit() {
-    	//
-    }
-    
+        
     
     /**
      * Iteraattori kaikkien instrumenttejen läpikäymiseen.
@@ -171,7 +175,29 @@ public class Instrumentit implements Iterable<Instrumentti> {
 	@Override
 	public Iterator<Instrumentti> iterator() {
 		return alkiot.iterator();
+	}	
+	
+	
+	/**
+	 * Laittaa luettavaksi tiedostoksi annetun merkkijonon
+	 * @param tiedosto     tiedosto jota halutaan lukea
+	 */
+	public void setLuettavaTiedosto(String tiedosto) {
+	    this.tiedostonNimi = tiedosto;
+	}	
+	
+	
+	/**
+	 * Etsii merkkijonoa vastaavan instrumentin, jos löytyy
+	 * @param etsittava        etsittava instrumentti
+	 * @return                 etsittävän instrumentin, muutoin null
+	 */
+	public Instrumentti loytyykoInstrumenttia(String etsittava) {
+	    for (Instrumentti alkio : this.alkiot) {
+	        if (alkio.getInstrumentti().equalsIgnoreCase(etsittava)) return alkio;
+	    }
+	    return null;
 	}
-
+	
 	
 }

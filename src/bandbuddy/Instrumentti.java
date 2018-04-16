@@ -4,13 +4,13 @@
 package bandbuddy;
 
 import java.io.*;
-
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * Instrumentti-luokka Yksittäisten instrumenttien alkiot
+ * Instrumentti-luokka
+ * Yksittäinen instrumentti
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 22 Mar 2018
+ * @version 15.04.2018
  *
  */
 public class Instrumentti {
@@ -19,37 +19,26 @@ public class Instrumentti {
 	
 	private static int seuraavaNro = 1;
 	
-	
-    /**
-     * Testiohjelma
-     * @param args ei käytössä
-     */	
-    public static void main(String[] args) {
-         Instrumentti kitara = new Instrumentti("kitara");
-         kitara.tulosta(System.out);
-    }
-    
     
     /**
      * Alustetaan instrumentti ilman parametria
      */
 	public Instrumentti() {
-		//
 	}
 	
 	
 	/**
 	 * Alustetaan instrumentti parametrin kanssa
-	 * @param instrumentti instrumentin nimi
+	 * @param instrumentti     instrumentin nimi merkkijonona
 	 */
 	public Instrumentti(String instrumentti) {
 		this.instrumentti = instrumentti;
-		
 	}
 	
 	
 	/**
-	 * @return instrumentin viite.
+	 * Antaa instrumentin tunnusnumeron
+	 * @return     instrumentin tunnusnumero
 	 */
 	public int getTunnusNro() {
 		return this.tunnusNro;
@@ -57,7 +46,8 @@ public class Instrumentti {
 	
 	
 	/**
-	 * @return Instrumentin nimi.
+	 * Antaa instrumentin nimen
+	 * @return     instrumentin nimi
 	 */
 	public String getInstrumentti() {
 		return this.instrumentti;
@@ -65,8 +55,9 @@ public class Instrumentti {
 	
 		
 	/**
-	 * Asettaa seuraavan numeron instrumentin viitteelle.
-	 *
+	 * Rekisteröi instrumentin
+	 * Asettaa instrumentille tunnusnumeron ja varmistaa että seuraavalle rekisteröitävälle
+	 * instrumentille tulee yhden suurempi tunnusnumero
      * @example
      * <pre name="test">
      *   Instrumentti testi = new Instrumentti("kitara");
@@ -83,32 +74,48 @@ public class Instrumentti {
 	
 	
     /**
-     * Laittaa instrumentin tunnusNro:ksi annetun numeron
+     * Rekisteröi instrumentin laittamalla instrumentin tunnusNro:ksi annetun numeron
+     * ja varmistaa että seuraava rekisteröitävä instrumentti saa yhden suuremman tunnusnumeron
+     * Tätä metodia käytetään kun luetaan tiedostosta
      * @param numero        laitettava numero
      */
     public void rekisteroi(int numero) {
-        if (this.tunnusNro > 0)
-            return;
+        if (this.tunnusNro > 0) return;
         this.tunnusNro = numero;
         seuraavaNro++;
     }
 	
 	
 	/**
-	 * muuttaa instrumentin tiedot merkkijonoksi
+	 * Muuttaa instrumentin tiedot merkkijonoksi
+	 * @example
+	 * <pre name="test">
+	 * Instrumentti testi1 = new Instrumentti("kitara");
+     * testi1.rekisteroi();
+     * testi1.toString() === "1|kitara|";
+     * Instrumentti testi2 = new Instrumentti();
+     * testi2.toString() === "0||";      
+	 * </pre>
 	 */
 	@Override
 	public String toString() {
 		return "" + getTunnusNro() + "|" + getInstrumentti() + "|";
-		
 	}
 	
-	@Override
-	public int hashCode() {
-	    return tunnusNro;
-	}
+	
 	/**
-	 * @param s tiedoston rivi josta otetaan tiedot
+	 * Poimii merkkijonosta instrumentin tiedot ja asettaa ne sen parametreihin
+	 * @param s merkkijono josta otetaan tiedot
+	 * @example
+	 * <pre name="test">
+	 * Instrumentti testi1 = new Instrumentti();
+	 * testi1.parse("1|Kitara|);
+	 * testi1.toString === "1|Kitara|";
+	 * Instrumentti testi2 = new Instrumentti("Banjo");
+	 * testi2.rekisteroi();
+	 * testi2.parse("");
+	 * testi2.toString === "2|Banjo|";
+	 * </pre>
 	 */
 	public void parse(String s) {
 		StringBuffer sb = new StringBuffer(s);
@@ -126,6 +133,15 @@ public class Instrumentti {
     }
 	
 	
+    /**
+     * Tulostaa instrumentin tiedot
+     * @param os tietovirta johon tulostetaan
+     */ 
+    public void tulosta(OutputStream os) {
+        tulosta(new PrintStream(os));
+    }
+	
+	
 	/**
 	 * Asettaa instrumentille nimen
 	 * @param merkkijono   asetettava nimi
@@ -135,12 +151,20 @@ public class Instrumentti {
 	}
 	
 	
-	 /**
-	 * Tulostaa jäsenen tiedot
-	 * @param os tietovirta johon tulostetaan
-	 */ 
-	public void tulosta(OutputStream os) {
-        tulosta(new PrintStream(os));
-    }
+	@Override
+	public int hashCode() {
+	    return tunnusNro;
+	}
+	
 
+    /**
+     * Testipääohjelma
+     * @param args ei käytössä
+     */ 
+    public static void main(String[] args) {
+         Instrumentti kitara = new Instrumentti("kitara");
+         kitara.tulosta(System.out);
+    }
+	
+    
 }

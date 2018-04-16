@@ -340,12 +340,22 @@ public class Henkilo {
      */
     @Override
     public String toString() {
-        return "" + this.id + "|" + this.nimi + "|" + this.ika + "|" + this.sukupuoli + "|" + this.paikkakunta + "|" + this.vapaana + "|" + this.kokemus + "|" + this.yhteystiedot;
+        return "" + this.id + "|" + this.nimi + "|" + this.ika + "|" + this.sukupuoli + "|" + this.paikkakunta + "|" + this.vapaana + "|" + this.kokemus + "|" + this.yhteystiedot + "|";
     }
     
+    
     /**
-     * Poimii merkkijonosta henkilön tiedot
+     * Poimii merkkijonosta henkilön tiedot ja laittaa ne sen attribuutteihin
      * @param merkkijono käsiteltävä merkkijono
+     * @example
+     * <pre name="test">
+     * Henkilo testiHenkilo1 = new Henkilo();
+     * testiHenkilo1.parse("1|Roope Ankka|50|Mies|Ankkalinna|Iltaisin|10v|0401234567|");
+     * testiHenkilo1.toString() === "1|Roope Ankka|50|Mies|Ankkalinna|Iltaisin|10v|0401234567|";
+     * Henkilo testiHenkilo2 = new Henkilo();
+     * testiHenkilo2.parse("");
+     * testiHenkilo2.toString() === "||||||||";
+     * </pre>
      */
     public void parse(String merkkijono) {
         StringBuilder tiedostonRiviSB = new StringBuilder(merkkijono);

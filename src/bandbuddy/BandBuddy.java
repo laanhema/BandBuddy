@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * BandBuddy-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 03.04.2018
+ * @version 15.04.2018
  *
  */
 public class BandBuddy {
@@ -89,8 +89,7 @@ public class BandBuddy {
      * @param henkilo yhistettävä henkilö
      * @param instrumentti yhistettävä instrumentti
      */
-    public void lisaaHloInstrumentti(Henkilo henkilo,
-            Instrumentti instrumentti) {
+    public void lisaaHloInstrumentti(Henkilo henkilo, Instrumentti instrumentti) {
         HenkiloJaInstrumentti yhistys = new HenkiloJaInstrumentti(
                 henkilo.getId(), instrumentti.getTunnusNro());
         henkilotJaInstrumentit.lisaa(yhistys);
@@ -116,7 +115,7 @@ public class BandBuddy {
 
 
     /**
-     * Etsii tietyn soittimen sen tunnusnumerolla
+     * Etsii tietyn soittimen (merkkijonon) sen tunnusnumerolla
      * @param tunnusnro soittimen viitenumero
      * @return soittimen merkkijonona
      */
@@ -144,6 +143,24 @@ public class BandBuddy {
         henkilotJaInstrumentit.kirjoitaTiedostoon();
     }
     
+    
+    /**
+     * Etsii merkkijonoa vastaavan instrumentin, jos löytyy
+     * @param etsittava        etsittava instrumentti
+     * @return                 etsittävän instrumentin, muutoin null
+     */
+    public Instrumentti loytyykoInstrumentti(String etsittava) {
+        return instrumentit.loytyykoInstrumenttia(etsittava);
+    }
+    
+    /**
+     * Poistaa tietyn henkilön kaikki instrumentit tietorakenteesta
+     * @param henkilonId        henkilön id
+     */
+    public void poistaHenkilonInstrumentit(int henkilonId) {
+        henkilotJaInstrumentit.poistaHenkilonInstrumentit(henkilonId);
+    }
+    
 
     /**
      * @param args ei käytössä
@@ -158,10 +175,8 @@ public class BandBuddy {
         testiHenkilo2.taytaValiaikaisetTiedot();
         bandbuddy.lisaa(testiHenkilo1);
         bandbuddy.lisaa(testiHenkilo2);
-        //  bandbuddy.tulosta();
 
         int id1 = testiHenkilo1.getId();
-        // int id2 = testiHenkilo2.getId();
 
         HenkiloJaInstrumentti soittaja = new HenkiloJaInstrumentti(id1);
         soittaja.vastaaKitaranSoittajaa(id1);
@@ -175,7 +190,6 @@ public class BandBuddy {
         bandbuddy.lisaa(soitin);
         bandbuddy.lisaa(soitin2);
         bandbuddy.lisaa(soitin3);
-        // bandbuddy.tulosta();
 
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin);
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin2);
