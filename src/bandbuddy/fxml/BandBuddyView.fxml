@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import fi.jyu.mit.fxgui.StringGrid?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane stylesheets="@bandbuddy.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bandbuddy.fxml.BandBuddyController">
+	<center>
+		<BorderPane prefHeight="340.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
+			<left>
+				<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="301.0" prefWidth="578.0">
+					<center>
+						<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" pannable="true" vbarPolicy="NEVER" vmax="0.0" BorderPane.alignment="CENTER">
+							<content>
+								<StringGrid fx:id="henkiloStringGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#klikattuHenkiloStringGrid" prefHeight="270.4" prefWidth="576.0" rivit="test|test|test|test&#10;test|test|test|test&#10;">
+									<opaqueInsets>
+										<Insets />
+									</opaqueInsets>
+									<cursor>
+										<Cursor fx:constant="DEFAULT" />
+									</cursor>
+								</StringGrid>
+							</content>
+						</ScrollPane>
+					</center>
+					<top>
+						<HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+							<children>
+								<TextField fx:id="tarkennettuHaku" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#kirjoitettuTarkennettuHaku" prefHeight="26.0" prefWidth="166.0" promptText="Tarkennettu haku">
+									<cursor>
+										<Cursor fx:constant="TEXT" />
+									</cursor>
+								</TextField>
+							</children>
+						</HBox>
+					</top>
+					<BorderPane.margin>
+						<Insets />
+					</BorderPane.margin>
+				</BorderPane>
+			</left>
+			<top>
+				<HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="587.0" BorderPane.alignment="TOP_RIGHT" />
+			</top>
+			<right>
+				<BorderPane prefHeight="301.0" BorderPane.alignment="CENTER">
+					<left>
+						<ScrollPane minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+							<content>
+								<StringGrid fx:id="instrumenttiStringGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="212.0" rivit="&#10;&#10;" />
+							</content>
+						</ScrollPane>
+					</left>
+					<top>
+						<HBox prefHeight="26.0" prefWidth="424.0" BorderPane.alignment="CENTER" />
+					</top>
+					<right>
+						<ScrollPane minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+							<BorderPane.margin>
+								<Insets right="53.0" />
+							</BorderPane.margin>
+							<content>
+								<StringGrid fx:id="genreStringGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="208.0" />
+							</content>
+						</ScrollPane>
+					</right>
+				</BorderPane>
+			</right>
+		</BorderPane>
+	</center>
+	<top>
+		<MenuBar BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="Tiedosto">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#painettuMenuTallenna" text="Tallenna" />
+						<MenuItem fx:id="menuSulje" mnemonicParsing="false" onAction="#painettuMenuSulje" text="Sulje" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Muokkaa">
+					<items>
+						<MenuItem fx:id="menuUusiHenkilo" mnemonicParsing="false" onAction="#painettuMenuLisaaUusiHenkilo" text="Lisää uusi henkilö" />
+						<MenuItem fx:id="menuMuokkaaHenkilonTietoja" mnemonicParsing="false" onAction="#painettuMenuMuokkaaHenkilonTietoja" text="Muokkaa henkilön tietoja" />
+						<MenuItem fx:id="menuPoista" mnemonicParsing="false" onAction="#painettuMenuPoista" text="Poista henkilön tiedot" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Apua">
+					<items>
+						<MenuItem fx:id="menuOhje" mnemonicParsing="false" onAction="#painettuMenuOhje" text="Ohje" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<left>
+		<VBox prefHeight="338.0" prefWidth="56.0" BorderPane.alignment="CENTER" />
+	</left>
+	<bottom>
+		<HBox prefHeight="37.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+			<children>
+				<Button fx:id="LisaaHenkilo" mnemonicParsing="false" onAction="#painettuLisaaHenkilo" text="Lisää henkilö">
+					<HBox.margin>
+						<Insets left="10.0" top="7.0" />
+					</HBox.margin>
+				</Button>
+				<Button fx:id="MuokkaaHenkilonTietoja" mnemonicParsing="false" onAction="#painettuMuokkaaHenkilonTietoja" text="Muokkaa henkilön tietoja">
+					<HBox.margin>
+						<Insets left="10.0" top="7.0" />
+					</HBox.margin>
+				</Button>
+			</children>
+		</HBox>
+	</bottom>
+</BorderPane>

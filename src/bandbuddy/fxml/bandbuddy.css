@@ -1,0 +1,19 @@
+.error {
+    -fx-background-color:   firebrick;
+    -fx-border-color:       black;
+    -fx-background-radius:  3;
+    -fx-border-radius:      3;
+    -fx-cursor:             text;
+    -fx-pref-height:        27;
+    -fx-text-fill:          red;
+}
+
+.normal {
+    -fx-background-color:   white;
+    -fx-border-color:       #b3b3b3;
+    -fx-background-radius:  3;
+    -fx-border-radius:      3;
+    -fx-cursor:             text;
+    -fx-pref-height:        27;
+}
+
