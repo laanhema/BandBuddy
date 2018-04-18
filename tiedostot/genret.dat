@@ -1,11 +1,13 @@
-;gid|genre    |  
-   1|Jazz     |
-   2|Rock     |
-   3|Metal    |
-   4|Pop      |
-   5|EDM      |
-   6|Proge    |
-   7|Folk     |
-   8|Djent    |
-   9|Country  |
-  10|Klassinen|
+;nid|genre|
+1|Jazz|
+2|Rock|
+3|Metal|
+4|Pop|
+5|EDM|
+6|Proge|
+7|Folk|
+8|Djent|
+9|Country|
+10|Klassinen|
+11|Piano|
+12|Metalli|

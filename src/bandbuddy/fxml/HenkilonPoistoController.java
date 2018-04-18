@@ -34,6 +34,7 @@ public class HenkilonPoistoController implements ModalControllerInterface<Henkil
 
     @FXML void painettuPoistaKylla(ActionEvent event) {
         bandbuddy.poistaHenkilonInstrumentit(this.kasiteltavaHenkilo.getId());
+        bandbuddy.poistaHenkilonGenret(this.kasiteltavaHenkilo.getId());
         bandbuddy.poistaHenkilo(this.kasiteltavaHenkilo.getId());
         ModalController.closeStage(poistaKylla);
         event.consume();

@@ -8,9 +8,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import bandbuddy.BandBuddy;
 import bandbuddy.Genre;
 import bandbuddy.Henkilo;
+import bandbuddy.HenkiloJaGenre;
 import bandbuddy.HenkiloJaInstrumentti;
 import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.Dialogs;
@@ -113,10 +115,15 @@ public class BandBuddyController implements Initializable {
 
 
     @FXML void kirjoitettuTarkennettuHaku(KeyEvent event) {
-        Dialogs.showMessageDialog("Tästä voi hakea henkilöitä");
+    	henkiloStringGrid.clear();
+        Henkilo temp = new Henkilo();
+        for (int i = 0; i < bandbuddy.getHenkilotTaulukonAlkioidenMaara(); i++) {
+            temp = bandbuddy.getHenkilo(i);
+            if (temp.getNimi().toLowerCase().contains(tarkennettuHaku.getText().toLowerCase()))
+            henkiloStringGrid.add(temp, temp.getNimi(), "" + temp.getIka(), temp.getSukupuoli(), temp.getPaikkakunta(), temp.getKokemus(), temp.getVapaana(), temp.getYhteystiedot() );
+        }
         event.consume();
     }
-    
     
     @FXML void klikattuHenkiloStringGrid(MouseEvent event) {
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
@@ -129,6 +136,15 @@ public class BandBuddyController implements Initializable {
             instrumenttiLista.add(bandbuddy.soitin(iNumerot.getInstrumentinNro()));
         for (int i = 0; i < hjiLista.size(); i++) {
             lisaaStringGridiin(instrumenttiLista);
+        }
+        
+        List<HenkiloJaGenre> hjgLista = bandbuddy.hGenret(valittuHenkilo.getId());
+        if (hjgLista.size() < 1) genreStringGrid.clear();
+        List<String> genreLista = new ArrayList<String>();
+        for (HenkiloJaGenre iNumerot : hjgLista)
+            genreLista.add(bandbuddy.hGenre(iNumerot.getGenrenNro()));
+        for (int i = 0; i < hjgLista.size(); i++) {
+            lisaaGenreStringGridiin(genreLista);
         }
         // System.out.println(hjiLista.get(i));
         // valittuHenkilo.tulosta(System.out);
@@ -185,6 +201,8 @@ public class BandBuddyController implements Initializable {
         
         instrumenttiStringGrid.initTable("Instrumentit");
         instrumenttiStringGrid.setColumnWidth(0, 187);
+        
+        
         genreStringGrid.initTable("Genret");
         genreStringGrid.setColumnWidth(0, 187);
     }
@@ -229,6 +247,16 @@ public class BandBuddyController implements Initializable {
         instrumenttiStringGrid.clear();
         for (String in : lisattavatInstrumentit)
         instrumenttiStringGrid.add(in);
+    }
+    
+    /**
+     * Lisää instrumentit instrumentti-StringGridiin
+     * @param lisattavatInstrumentit   lisättävät instrumentit
+     */
+    public void lisaaGenreStringGridiin(List<String> lisattavatGenret) {
+        genreStringGrid.clear();
+        for (String ge : lisattavatGenret)
+        genreStringGrid.add(ge);
     }
     
 

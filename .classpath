@@ -7,8 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/devel/ec47/eclipse/dropins/Ali.jar"/>
-	<classpathentry kind="lib" path="C:/devel/ec47/eclipse/dropins/comtestplug_1.0.7.jar"/>
-	<classpathentry kind="lib" path="C:/devel/ec47/eclipse/dropins/fxgui.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Käyttäjä/Downloads/fxgui.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Käyttäjä/Downloads/Ali.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

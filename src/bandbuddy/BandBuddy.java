@@ -15,6 +15,8 @@ public class BandBuddy {
     private Henkilot henkilot = new Henkilot();
     private final HenkilotJaInstrumentit henkilotJaInstrumentit = new HenkilotJaInstrumentit();
     private final Instrumentit instrumentit = new Instrumentit();
+    private final HenkilotJaGenret henkilotJaGenret = new HenkilotJaGenret();
+    private final Genret genret = new Genret();
 
 
     /**
@@ -48,6 +50,23 @@ public class BandBuddy {
      */
     public void lisaa(HenkiloJaInstrumentti soittaja) {
         henkilotJaInstrumentit.lisaa(soittaja);
+    }
+    
+    /**
+     * Lisää instrumentin tietorakenteeseen
+     * @param soitin lisättävä instrumentti
+     */
+    public void lisaa(Genre g) {
+        genret.lisaa(g);
+    }
+    
+    
+    /**
+     * Lisää henkilön ja instrumentin idn tietorakenteeseen
+     * @param soittaja lisättävä henkilö ja sen instrumentti
+     */
+    public void lisaa(HenkiloJaGenre g) {
+        henkilotJaGenret.lisaa(g);
     }
 
     
@@ -94,6 +113,17 @@ public class BandBuddy {
                 henkilo.getId(), instrumentti.getTunnusNro());
         henkilotJaInstrumentit.lisaa(yhistys);
     }
+    
+    /**
+     * Yhdistää henkilön ja instrumentin
+     * @param henkilo yhistettävä henkilö
+     * @param instrumentti yhistettävä instrumentti
+     */
+    public void lisaaHlogenre(Henkilo henkilo, Genre genre) {
+        HenkiloJaGenre yhistys = new HenkiloJaGenre(
+                henkilo.getId(), genre.getTunnusNro());
+        henkilotJaGenret.lisaa(yhistys);
+    }
 
 
     /**
@@ -119,9 +149,29 @@ public class BandBuddy {
      * @param tunnusnro soittimen viitenumero
      * @return soittimen merkkijonona
      */
+    public String hGenre(int tunnusnro) {
+        return genret.hGenre(tunnusnro);
+    }
+    
+    /**
+     * Etsii tietyn henkilön kaikki soittimet
+     * @param henkilonId tietyn henkilön id jolta instrumentit halutaan
+     * @return tietyn henkilön kaikki soittimet listana.
+     */
+    public List<HenkiloJaGenre> hGenret(int henkilonId) {
+        return henkilotJaGenret.hGenret(henkilonId);
+    }
+
+
+    /**
+     * Etsii tietyn soittimen (merkkijonon) sen tunnusnumerolla
+     * @param tunnusnro soittimen viitenumero
+     * @return soittimen merkkijonona
+     */
     public String soitin(int tunnusnro) {
         return instrumentit.soitin(tunnusnro);
     }
+    
     
     
     /**
@@ -131,6 +181,8 @@ public class BandBuddy {
         henkilot.lueTiedostosta();
         instrumentit.lueTiedostosta();
         henkilotJaInstrumentit.lueTiedostosta();
+        genret.lueTiedostosta();
+        henkilotJaGenret.lueTiedostosta();
     }
     
     
@@ -141,6 +193,8 @@ public class BandBuddy {
         henkilot.kirjoitaTiedostoon();
         instrumentit.kirjoitaTiedostoon();
         henkilotJaInstrumentit.kirjoitaTiedostoon();
+        genret.kirjoitaTiedostoon();
+        henkilotJaGenret.kirjoitaTiedostoon();
     }
     
     
@@ -151,6 +205,15 @@ public class BandBuddy {
      */
     public Instrumentti loytyykoInstrumentti(String etsittava) {
         return instrumentit.loytyykoInstrumenttia(etsittava);
+    }
+    
+    /**
+     * Etsii merkkijonoa vastaavan instrumentin, jos löytyy
+     * @param etsittava        etsittava instrumentti
+     * @return                 etsittävän instrumentin, muutoin null
+     */
+    public Genre loytyykoGenre(String etsittava) {
+        return genret.loytyykoGenrea(etsittava);
     }
     
     
@@ -170,6 +233,14 @@ public class BandBuddy {
      */
     public void poistaHenkilonInstrumentit(int henkilonId) {
         henkilotJaInstrumentit.poistaHenkilonInstrumentit(henkilonId);
+    }
+    
+    /**
+     * Poistaa tietyn henkilön kaikki instrumentit tietorakenteesta
+     * @param henkilonId        henkilön id
+     */
+    public void poistaHenkilonGenret(int henkilonId) {
+        henkilotJaGenret.poistaHenkilonGenret(henkilonId);
     }
     
 
@@ -194,6 +265,12 @@ public class BandBuddy {
         Instrumentti soitin = new Instrumentti("kitara");
         Instrumentti soitin2 = new Instrumentti("basso");
         Instrumentti soitin3 = new Instrumentti("rummut");
+        
+        Genre g1 = new Genre("proge");
+        
+        g1.rekisteroi();
+        
+        bandbuddy.lisaa(g1);
 
         soitin.rekisteroi();
         soitin2.rekisteroi();
@@ -202,6 +279,7 @@ public class BandBuddy {
         bandbuddy.lisaa(soitin2);
         bandbuddy.lisaa(soitin3);
 
+        bandbuddy.lisaaHlogenre(testiHenkilo1, g1);
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin);
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin2);
         bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin3);
@@ -213,5 +291,13 @@ public class BandBuddy {
             hlosoittimet1.add(bandbuddy.soitin(iNumerot.getInstrumentinNro()));
         for (int i = 0; i < hlosoittimet.size(); i++)
             System.out.println(hlosoittimet1.get(i));
+        
+        List<HenkiloJaGenre> hlogenret = bandbuddy
+                .hGenret(testiHenkilo1.getId());
+        List<String> hlogenret1 = new ArrayList<String>();
+        for (HenkiloJaGenre iNumerot : hlogenret)
+            hlogenret1.add(bandbuddy.hGenre(iNumerot.getGenrenNro()));
+        for (int i = 0; i < hlogenret.size(); i++)
+            System.out.println(hlogenret1.get(i));
     }
 }

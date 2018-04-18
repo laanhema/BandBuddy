@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import bandbuddy.BandBuddy;
+import bandbuddy.Genre;
 import bandbuddy.Henkilo;
+import bandbuddy.HenkiloJaGenre;
 import bandbuddy.HenkiloJaInstrumentti;
 import bandbuddy.Instrumentti;
 import fi.jyu.mit.fxgui.ModalController;
@@ -48,6 +50,9 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
         this.kasiteltavaHenkilo.setPaikkakunta(this.paikkakuntaKentta.getText().trim());
         StringBuilder instrumentit = new StringBuilder(this.instrumentitKentta.getText().trim());
         luoInstrumentit(instrumentit);
+        
+        StringBuilder genret = new StringBuilder(this.genretKentta.getText().trim());
+        luoGenret(genret);
   
         this.kasiteltavaHenkilo.setVapaana(this.vapaanaKentta.getText().trim());
         this.kasiteltavaHenkilo.setKokemus(this.kokemusKentta.getText().trim());
@@ -91,6 +96,39 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
         }
     }
     
+    /**
+     * Luo merkkijonon perusteella henkilölle uudet instrumentit
+     * @param instrumentit        käsiteltävä merkkijono
+     */
+    public void luoGenret(StringBuilder genret) {
+        bandbuddy.poistaHenkilonGenret(kasiteltavaHenkilo.getId());
+        if (genret.length() > 0) {
+            while (genret.length() > 0) {
+                String uusiGenreString = Mjonot.erota(genret, ',', genret.toString()).trim();
+                Genre uusiGenre = new Genre();
+                uusiGenre = bandbuddy.loytyykoGenre(uusiGenreString);
+                if (uusiGenre == null) { // ei löytynyt jos null
+                uusiGenre = new Genre(uusiGenreString);
+                uusiGenre.rekisteroi();
+                bandbuddy.lisaa(uusiGenre);
+                }
+               
+                // tarkistetaan oliko henkilöllä jo aikaisemmin tätä genreä
+                
+                List<HenkiloJaGenre> hjgLista = bandbuddy.hGenret(kasiteltavaHenkilo.getId());
+                boolean loytyiko = false;
+                for (HenkiloJaGenre alkio : hjgLista) {
+                    if (bandbuddy.soitin(alkio.getGenrenNro()).equalsIgnoreCase(uusiGenreString)) {
+                        loytyiko = true;
+                    }
+                }
+                if (loytyiko == false) {
+                    bandbuddy.lisaaHlogenre(kasiteltavaHenkilo, uusiGenre);
+                }
+            }
+        }
+    }
+    
     
     
     @FXML
@@ -121,7 +159,17 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
         instrumentitSB.deleteCharAt(0);
         instrumentitSB.deleteCharAt(instrumentitSB.length()-1);
         this.instrumentitKentta.setText(instrumentitSB.toString());
-        // this.genretKentta.setText(kasiteltavaHenkilo.getblablabla());      
+        
+        List<HenkiloJaGenre> hjgLista = bandbuddy.hGenret(kasiteltavaHenkilo.getId());
+        List<String> genreLista = new ArrayList<String>();
+        for (HenkiloJaGenre alkio : hjgLista) {    
+            genreLista.add(bandbuddy.hGenre(alkio.getGenrenNro()));
+        }
+        StringBuilder genretSB = new StringBuilder(genreLista.toString());
+        genretSB.deleteCharAt(0);
+        genretSB.deleteCharAt(genretSB.length()-1);
+        this.genretKentta.setText(genretSB.toString());  
+        
         this.vapaanaKentta.setText(kasiteltavaHenkilo.getVapaana());     
         this.kokemusKentta.setText(kasiteltavaHenkilo.getKokemus());     
         this.yhteystiedotKentta.setText(kasiteltavaHenkilo.getYhteystiedot());
