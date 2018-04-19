@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.util.*;
@@ -8,10 +5,10 @@ import java.util.*;
 /**
  * BandBuddy-luokka
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class BandBuddy {
+    
     private final Henkilot                  henkilot                    = new Henkilot();
     private final HenkilotJaInstrumentit    henkilotJaInstrumentit      = new HenkilotJaInstrumentit();
     private final Instrumentit              instrumentit                = new Instrumentit();
@@ -308,7 +305,8 @@ public class BandBuddy {
      * 
      */
     public String instrumentitKenttaTarkistus(String merkkijono) {
-        if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö]*[,]+[ ]+[A-z|Ä|Ö|ä|ö].*|[A-z|Ä|Ö|ä|ö]*") && merkkijono.length() > 0 ) return "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+        if ( merkkijono.startsWith("-") || merkkijono.startsWith(" ") || merkkijono.endsWith("-") || merkkijono.endsWith(" ") )  return "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+        if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö| |-]*[,]+[ ]+[A-z|Ä|Ö|ä|ö |-].*|[A-z|Ä|Ö|ä|ö| |-]*") && merkkijono.length() > 0 ) return "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
         return null;
     }
 
@@ -321,7 +319,8 @@ public class BandBuddy {
      * 
      */
     public String genretKenttaTarkistus(String merkkijono) {
-        if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö]*[,]+[ ]+[A-z|Ä|Ö|ä|ö].*|[A-z|Ä|Ö|ä|ö]*") && merkkijono.length() > 0 ) return "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+        if ( merkkijono.startsWith("-") || merkkijono.startsWith(" ") || merkkijono.startsWith("'") || merkkijono.endsWith("-") || merkkijono.endsWith(" ") || merkkijono.endsWith("'")  )  return "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+        if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö| |-|']*[,]+[ ]+[A-z|Ä|Ö|ä|ö |-|'].*|[A-z|Ä|Ö|ä|ö| |-|']*") && merkkijono.length() > 0 ) return "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
         return null;
     }
 
@@ -362,48 +361,5 @@ public class BandBuddy {
     public String yhteystiedotKenttaTarkistus(String merkkijono) {
         if ( !merkkijono.matches(".*") && merkkijono.length() > 0 ) return "Virheellisesti täytetty kenttä";
         return null;
-    }
-    
-
-    /**
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-        BandBuddy bandbuddy = new BandBuddy();
-        Henkilo testiHenkilo1 = new Henkilo();
-        Henkilo testiHenkilo2 = new Henkilo();
-        testiHenkilo1.rekisteroi();
-        testiHenkilo1.taytaValiaikaisetTiedot();
-        testiHenkilo2.rekisteroi();
-        testiHenkilo2.taytaValiaikaisetTiedot();
-        bandbuddy.lisaa(testiHenkilo1);
-        bandbuddy.lisaa(testiHenkilo2);
-
-        int id1 = testiHenkilo1.getId();
-
-        HenkiloJaInstrumentti soittaja = new HenkiloJaInstrumentti(id1);
-        soittaja.vastaaKitaranSoittajaa(id1);
-        Instrumentti soitin = new Instrumentti("kitara");
-        Instrumentti soitin2 = new Instrumentti("basso");
-        Instrumentti soitin3 = new Instrumentti("rummut");
-
-        soitin.rekisteroi();
-        soitin2.rekisteroi();
-        soitin3.rekisteroi();
-        bandbuddy.lisaa(soitin);
-        bandbuddy.lisaa(soitin2);
-        bandbuddy.lisaa(soitin3);
-
-        bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin);
-        bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin2);
-        bandbuddy.lisaaHloInstrumentti(testiHenkilo1, soitin3);
-
-        List<HenkiloJaInstrumentti> hlosoittimet = bandbuddy
-                .soittimet(testiHenkilo1.getId());
-        List<String> hlosoittimet1 = new ArrayList<String>();
-        for (HenkiloJaInstrumentti iNumerot : hlosoittimet)
-            hlosoittimet1.add(bandbuddy.soitin(iNumerot.getInstrumentinNro()));
-        for (int i = 0; i < hlosoittimet.size(); i++)
-            System.out.println(hlosoittimet1.get(i));
     }
 }

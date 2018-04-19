@@ -8,6 +8,7 @@
     -fx-text-fill:          red;
 }
 
+
 .normal {
     -fx-background-color:   white;
     -fx-border-color:       #b3b3b3;
@@ -16,4 +17,3 @@
     -fx-cursor:             text;
     -fx-pref-height:        27;
 }
-

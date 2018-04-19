@@ -1,29 +1,27 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * Henkilö-luokka
+ * Yksittäinen henkilö
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
 public class Henkilo {
-    private int id = 0;
-    private String nimi = "";
-    private int ika = 0;
-    private String sukupuoli = "";
-    private String paikkakunta = "";
-    private String vapaana = "";
-    private String kokemus = "";
-    private String yhteystiedot = "";
-
-    private static int seuraavaId = 1;
+    
+    private int         id              = 0;
+    private String      nimi            = "";
+    private int         ika             = 0;
+    private String      sukupuoli       = "";
+    private String      paikkakunta     = "";
+    private String      vapaana         = "";
+    private String      kokemus         = "";
+    private String      yhteystiedot    = "";
+                        
+    private static int  seuraavaId      = 1;
 
 
     /**
@@ -373,27 +371,4 @@ public class Henkilo {
         this.setKokemus(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
         this.setYhteystiedot(Mjonot.erota(tiedostonRiviSB, '|', false).trim());
     }
-    
-    
-    
-    /**
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-        // Näitä ei tarvita tulevaisuudessa, poistetaan joskus
-        Henkilo testiHenkilo1 = new Henkilo();
-        Henkilo testiHenkilo2 = new Henkilo();
-        testiHenkilo1.tulosta(System.out);
-        testiHenkilo2.tulosta(System.out);
-        testiHenkilo1.rekisteroi();
-        testiHenkilo2.rekisteroi();
-        testiHenkilo1.tulosta(System.out);
-        testiHenkilo2.tulosta(System.out);
-        testiHenkilo1.taytaValiaikaisetTiedot();
-        testiHenkilo2.taytaValiaikaisetTiedot();
-        testiHenkilo1.tulosta(System.out);
-        testiHenkilo2.tulosta(System.out);
-    }
-
-
 }

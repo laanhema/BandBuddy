@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.util.*;
@@ -10,15 +7,12 @@ import java.io.*;
  * Instrumentit-luokka
  * Sisältää tietorakenteen josta löytyy kaikki yksittäiset instrumentti-alkiot
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class Instrumentit implements Iterable<Instrumentti> {
 	
-	private String tiedostonNimi = "instrumentit.dat";
-	
-	/* Instrumenttien lista */
-	private final Collection<Instrumentti> alkiot = new ArrayList<Instrumentti>();
+	private String                         tiedostonNimi   = "instrumentit.dat";
+	private final Collection<Instrumentti> alkiot          = new ArrayList<Instrumentti>();
 	
 	
     /**
@@ -29,35 +23,11 @@ public class Instrumentit implements Iterable<Instrumentti> {
 	
     
     /**
-     * Testipääohjelma
-     * @param args ei käytässä
-     */	
-    public static void main(String[] args) {
-    	 Instrumentit soitinlista = new Instrumentit();
-         Instrumentti kitara = new Instrumentti("kitara");
-         Instrumentti rummut = new Instrumentti("rummut");
-         Instrumentti basso = new Instrumentti("basso");
-
-         soitinlista.lisaa(kitara);
-         soitinlista.lisaa(rummut);
-         soitinlista.lisaa(basso);
-         
-         
-       //  List<Instrumentti> soitinlista2 = soitinlista.soittimet(2);
-       //  for (int i = 0; i < soitinlista2.size(); i++)
-       //  System.out.println(soitinlista2.get(i).getInstrumentti());
-         
-         
-    }
-    
-    
-    /**
      * Hakee instrumentin tunnusnron avulla
      * @param tunnusnro instrumentin tunnusnro
      * @return instrumentin merkkijonona.
      * #import java.util.*;
      * @example
-     * 
      * <pre name="test">
      * Instrumentit i = new Instrumentit();
      * Instrumentti a = new Instrumentti("Kitara"); 
@@ -69,10 +39,10 @@ public class Instrumentit implements Iterable<Instrumentti> {
      * Instrumentti c = new Instrumentti("Basso"); 
      * c.rekisteroi(); 
      * i.lisaa(c);
-     * i.getLkm() === 3;
-     * i.soitin(-1) === "ei toimi";
-     * i.soitin(3) === "Basso";
-     * i.soitin(1) === "Kitara";
+     * i.getLkm()       === 3;
+     * i.soitin(-1)     === "ei toimi";
+     * i.soitin(3)      === "Basso";
+     * i.soitin(1)      === "Kitara";
      * </pre> 
      */
     public String soitin(int tunnusnro) {
@@ -173,11 +143,11 @@ public class Instrumentit implements Iterable<Instrumentti> {
      *  Instrumentti b = new Instrumentti("Basso"); soittimet.lisaa(b);
      *  Instrumentti c = new Instrumentti("Rummut"); soittimet.lisaa(c);
      * 
-     *  Iterator<Instrumentti> i2=soittimet.iterator();
+     *  Iterator<Instrumentti> i2 = soittimet.iterator();
      *  i2.next() === a;
      *  i2.next() === b;
      *  i2.next() === c;
-     *  i2.next() === b;  #THROWS NoSuchElementException  
+     *  i2.next() === b;  #THROWS NoSuchElementException
      *  
      * </pre>
      */
@@ -207,6 +177,4 @@ public class Instrumentit implements Iterable<Instrumentti> {
 	    }
 	    return null;
 	}
-	
-	
 }

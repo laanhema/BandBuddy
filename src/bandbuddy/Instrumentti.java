@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.*;
@@ -10,14 +7,14 @@ import fi.jyu.mit.ohj2.Mjonot;
  * Instrumentti-luokka
  * Yksittäinen instrumentti
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class Instrumentti {
-	private int tunnusNro;
-	private String instrumentti = "";
+    
+	private int        tunnusNro;
+	private String     instrumentti        = "";
 	
-	private static int seuraavaNro = 1;
+	private static int seuraavaNro         = 1;
 	
     
     /**
@@ -149,22 +146,4 @@ public class Instrumentti {
 	public void setNimi(String merkkijono) {
 	    this.instrumentti = merkkijono;
 	}
-	
-	
-	@Override
-	public int hashCode() {
-	    return tunnusNro;
-	}
-	
-
-    /**
-     * Testipääohjelma
-     * @param args ei käytössä
-     */ 
-    public static void main(String[] args) {
-         Instrumentti kitara = new Instrumentti("kitara");
-         kitara.tulosta(System.out);
-    }
-	
-    
 }

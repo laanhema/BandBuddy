@@ -1,37 +1,20 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.*;
-
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * HenkiloJaGenre-luokka
  * Luokka joka liittää genren ja jäsenen idt keskenään.
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class HenkiloJaGenre {
-	private int tunnusNro;
-	private int henkilonNro;
-	private int genrenNro;
-	
-	private static int seuraavaNro = 1;
-	
-	
-    /**
-     * Testipääluokka
-     * @param args ei käytössä
-     */	
-    public static void main(String[] args) {
-    	HenkiloJaGenre testi= new HenkiloJaGenre(3);
-    	testi.tulosta(System.out);
-    }
     
-        
+	private int        henkilonNro;
+	private int        genrenNro;
+	
+	 
     /**
      * Alustaa HenkiloJaGenre-olion ilman parametrejä
      */
@@ -79,51 +62,13 @@ public class HenkiloJaGenre {
 	
 	
 	/**
-	 * @return palauttaa alkion viitenumeron
-	 */
-	public int getTunnusNro() {
-		return tunnusNro;
-	}
-	
-	
-	/**
 	 * @return genren viitenumeron
 	 */
 	public int getGenrenNro() {
 		return genrenNro;
 	}
 	
-	
-	/**
-	 * Rekisteröi HenkilöJaGenre-alkion
-	 * Varmistaa että seuraava rekisteröitävä saa yhden suuremman id:n
-     * @example
-     * <pre name="test">
-     *   HenkiloJaGenre testilinkki1 = new HenkiloJaGenre(1);
-     *   testilinkki1.rekisteroi();      
-     *   testilinkki1.getTunnusNro() === 1;
-     *   HenkiloJaGenre testilinkki2 = new HenkiloJaGenre(1);
-     *   testilinkki2.rekisteroi();      
-     *   testilinkki2.getTunnusNro() === 2;
-     * </pre>
-     */
-	public void rekisteroi() {
-		tunnusNro = seuraavaNro++;
-	}
-	
-	
-    /**
-     * Laittaa alkion tunnusNro:ksi annetun numeron
-     * @param numero        laitettava numero
-     */
-    public void rekisteroi(int numero) {
-        if (this.tunnusNro > 0)
-            return;
-        this.tunnusNro = numero;
-        seuraavaNro++;
-    }
-	
-	
+
 	/**
 	 * Tulostaa instrumentin tiedot
 	 * @param out tietovirta johon tulostetaan
@@ -138,7 +83,7 @@ public class HenkiloJaGenre {
 	 */
 	@Override
 	public String toString() {
-		return "" + getTunnusNro() + "|" + getHenkilonNro() + "|" + getGenrenNro() + "|";	
+		return getHenkilonNro() + "|" + getGenrenNro() + "|";	
 	}
 	
 	
@@ -149,25 +94,16 @@ public class HenkiloJaGenre {
 	 */
 	public void parse(String s) {
 		StringBuffer sb = new StringBuffer(s);
-		this.rekisteroi(Mjonot.erota(sb, '|', getTunnusNro()));
 		henkilonNro = Mjonot.erota(sb, '|', getHenkilonNro());
 		genrenNro = Mjonot.erota(sb, '|', getGenrenNro());
 	}
 	
-	
-	@Override
-	public int hashCode() {
-	    return tunnusNro;
-	}
-	
-	
+
 	/**
 	 * Tulostaa jäsenen tiedot
 	 * @param os tietovirta johon tulostetaan
 	 */
 	public void tulosta(OutputStream os) {
         tulosta(new PrintStream(os));
-    }
-
-	
+    }	
 }

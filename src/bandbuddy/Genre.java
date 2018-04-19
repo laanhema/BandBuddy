@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.*;
@@ -10,14 +7,14 @@ import fi.jyu.mit.ohj2.Mjonot;
  * Genre-luokka
  * Yksittäinen genre
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class Genre {
-	private int tunnusNro;
-	private String genre = "";
+    
+	private int        tunnusNro;
+	private String     genre           = "";
 	
-	private static int seuraavaNro = 1;
+	private static int seuraavaNro     = 1;
 	
     
     /**
@@ -60,12 +57,14 @@ public class Genre {
 	 * genrelle tulee yhden suurempi tunnusnumero
      * @example
      * <pre name="test">
-     *   Genre testigenre1 = new Genre("djent");
-     *   testigenre1.rekisteroi();      
-     *   testigenre1.getTunnusNro() === 1;
-     *   Genre testigenre2 = new Genre("rock");
-     *   testigenre2.rekisteroi();  
-     *   testigenre2.getTunnusNro() === 2;
+     * Genre testigenre1 = new Genre("djent");
+     * Genre testigenre2 = new Genre("rock");
+     * testigenre1.rekisteroi();      
+     * testigenre2.rekisteroi();  
+     * testigenre1.getTunnusNro()             === 1;
+     * testigenre2.getTunnusNro()             === 2;
+     * testigenre1.getGenre()                 === "djent";
+     * testigenre2.getGenre()                 === "rock";
      * </pre>
      */
 	public void rekisteroi() {
@@ -91,9 +90,9 @@ public class Genre {
 	 * @example
 	 * <pre name="test">
 	 * Genre testigenre3 = new Genre("Psytrance");
-     * testigenre3.rekisteroi();
+	 * testigenre3.rekisteroi();
+	 * Genre testigenre4 = new Genre();
      * testigenre3.toString() === "3|Psytrance|";
-     * Genre testigenre4 = new Genre();
      * testigenre4.toString() === "0||";      
 	 * </pre>
 	 */
@@ -110,11 +109,11 @@ public class Genre {
 	 * <pre name="test">
 	 * Genre testigenre5 = new Genre("EDM");
 	 * testigenre5.rekisteroi();
-     * testigenre5.parse("");
-     * testigenre5.toString() === "4|EDM|";
 	 * Genre testigenre6 = new Genre();
-	 * testigenre6.parse("1|Pop|");
-	 * testigenre6.toString() === "1|Pop|";
+     * testigenre5.parse("");
+     * testigenre6.parse("1|Pop|");
+     * testigenre5.toString()           === "4|EDM|";
+	 * testigenre6.toString()           === "1|Pop|";
 	 * </pre>
 	 */
 	public void parse(String s) {
@@ -145,26 +144,14 @@ public class Genre {
 	/**
 	 * Asettaa genrelle nimen
 	 * @param merkkijono   asetettava nimi
+	 * @example
+	 * <pre name="test">
+	 * Genre testigenre7 = new Genre();
+	 * testigenre7.setNimi("Blues");
+	 * testigenre7.toString() === "0|Blues|";
+	 * </pre>
 	 */
 	public void setNimi(String merkkijono) {
 	    this.genre = merkkijono;
 	}
-	
-	
-	@Override
-	public int hashCode() {
-	    return tunnusNro;
-	}
-	
-
-    /**
-     * Testipääohjelma
-     * @param args ei käytössä
-     */ 
-    public static void main(String[] args) {
-         Genre metalli = new Genre("metalli");
-         metalli.tulosta(System.out);
-    }
-	
-    
 }

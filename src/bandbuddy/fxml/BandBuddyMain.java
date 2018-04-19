@@ -7,10 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
-
 /**
+ * Pääohjelma josta itse ohjelma ajetaan
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
 public class BandBuddyMain extends Application {
     @Override
@@ -19,7 +19,6 @@ public class BandBuddyMain extends Application {
             FXMLLoader ldr = new FXMLLoader(getClass().getResource("BandBuddyView.fxml"));
             final Pane root = ldr.load();
             final BandBuddyController bandbuddyCtrl = (BandBuddyController) ldr.getController();
-            
             
             BandBuddy bandbuddy = new BandBuddy();
             bandbuddyCtrl.setBandBuddy(bandbuddy);
@@ -33,15 +32,7 @@ public class BandBuddyMain extends Application {
             
             primaryStage.show();
         } catch(Exception e) {
-            
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param args Ei käytössä
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }

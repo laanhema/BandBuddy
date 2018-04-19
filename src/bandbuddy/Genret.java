@@ -1,8 +1,4 @@
 package bandbuddy;
-/**
- * 
- */
-
 
 import java.util.*;
 import java.io.*;
@@ -11,15 +7,12 @@ import java.io.*;
  * Genret-luokka
  * Sisältää tietorakenteen josta löytyy kaikki yksittäiset genre-alkiot
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class Genret implements Iterable<Genre> {
 	
-	private String tiedostonNimi = "genret.dat";
-	
-	/* genrelista lista */
-	private final Collection<Genre> alkiot = new ArrayList<Genre>();
+	private String                     tiedostonNimi       = "genret.dat";
+	private final Collection<Genre>    alkiot              = new ArrayList<Genre>();
 	
 	
     /**
@@ -27,27 +20,7 @@ public class Genret implements Iterable<Genre> {
      */
     public Genret() {
     }
-	
-    
-    /**
-     * Testipääohjelma
-     * @param args ei käytässä
-     */	
-    public static void main(String[] args) {
-    	 Genret genret = new Genret();
-         Genre metalli = new Genre("metalli");
-
-
-         genret.lisaa(metalli);
-         
-         
-       //  List<Instrumentti> soitinlista2 = soitinlista.soittimet(2);
-       //  for (int i = 0; i < soitinlista2.size(); i++)
-       //  System.out.println(soitinlista2.get(i).getInstrumentti());
-         
-  
-    }
-    
+	    
     
     /**
      * Hakee tunnusluvulla viedyn genren nimen
@@ -55,7 +28,6 @@ public class Genret implements Iterable<Genre> {
      * @return genren merkkijonona.
      * #import java.util.*;
      * @example
-     * 
      * <pre name="test">
      * Genret i = new Genret();
      * Genre a = new Genre("EDM"); 
@@ -67,9 +39,9 @@ public class Genret implements Iterable<Genre> {
      * Genre c = new Genre("Metal"); 
      * c.rekisteroi(); 
      * i.lisaa(c);
-     * i.getLkm() === 3;
-     * i.hGenre(-1) === "ei toimi";
-     * i.hGenre(1) === "EDM";
+     * i.getLkm()       === 3;
+     * i.hGenre(-1)     === "ei toimi";
+     * i.hGenre(1)      === "EDM";
      * </pre> 
      */
     public String hGenre(int tunnusnro) {
@@ -165,16 +137,16 @@ public class Genret implements Iterable<Genre> {
      * #PACKAGEIMPORT
      * #import java.util.*;
      * 
-     *  Genret genret = new Genret();
-     *  Genre a = new Genre("Rock"); genret.lisaa(a);
-     *  Genre b = new Genre("Prog"); genret.lisaa(b);
-     *  Genre c = new Genre("Pop"); genret.lisaa(c);
+     * Genret genret = new Genret();
+     * Genre a = new Genre("Rock"); genret.lisaa(a);
+     * Genre b = new Genre("Prog"); genret.lisaa(b);
+     * Genre c = new Genre("Pop"); genret.lisaa(c);
      * 
-     *  Iterator<Genre> i2=genret.iterator();
-     *  i2.next() === a;
-     *  i2.next() === b;
-     *  i2.next() === c;
-     *  i2.next() === b;  #THROWS NoSuchElementException  
+     * Iterator<Genre> i2 = genret.iterator();
+     * i2.next() === a;
+     * i2.next() === b;
+     * i2.next() === c;
+     * i2.next() === b;  #THROWS NoSuchElementException  
      *  
      * </pre>
      */
@@ -203,7 +175,5 @@ public class Genret implements Iterable<Genre> {
 	        if (alkio.getGenre().equalsIgnoreCase(etsittava)) return alkio;
 	    }
 	    return null;
-	}
-	
-	
+	}	
 }

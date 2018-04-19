@@ -7,9 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.util.List;
-
 import bandbuddy.BandBuddy;
 import bandbuddy.Genre;
 import bandbuddy.Henkilo;
@@ -22,8 +20,9 @@ import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
+ * Kontrolleri "henkilön lisäys" -ikkunalle
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
 public class HenkilonLisaysController implements ModalControllerInterface<Henkilo> {
 
@@ -36,27 +35,27 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     @FXML private TextField vapaanaKentta;
     @FXML private TextField kokemusKentta;
     @FXML private TextField yhteystiedotKentta;
-    @FXML private Button henkilonLisaysLisaaJasen;
-    @FXML private Button henkilonLisaysPeruuta;
+    @FXML private Button    henkilonLisaysLisaaJasen;
+    @FXML private Button    henkilonLisaysPeruuta;
 
-    private Henkilo kasiteltavaHenkilo;
-    private BandBuddy bandbuddy;
+    private Henkilo         kasiteltavaHenkilo;
+    private BandBuddy       bandbuddy;
     
     
-    @FXML void henkilonLisaysLisaaJasenPainettu(ActionEvent event) {
+    @FXML private void henkilonLisaysLisaaJasenPainettu(ActionEvent event) {
         lisaaHenkilo();
         ModalController.closeStage(henkilonLisaysLisaaJasen);
         event.consume();
     }
     
 
-    @FXML void henkilonLisaysPeruutaPainettu(ActionEvent event) {
+    @FXML private void henkilonLisaysPeruutaPainettu(ActionEvent event) {
         ModalController.closeStage(henkilonLisaysPeruuta);
         event.consume();
     }
     
     
-    @FXML void kirjoitettuNimiKentta(KeyEvent event) {
+    @FXML private void kirjoitettuNimiKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.nimiKenttaTarkistus(kentta.getText());
@@ -76,7 +75,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuIkaKentta(KeyEvent event) {
+    @FXML private void kirjoitettuIkaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.ikaKenttaTarkistus(kentta.getText());
@@ -96,7 +95,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuSukupuoliKentta(KeyEvent event) {
+    @FXML private void kirjoitettuSukupuoliKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.sukupuoliKenttaTarkistus(kentta.getText());
@@ -116,7 +115,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuPaikkakuntaKentta(KeyEvent event) {
+    @FXML private void kirjoitettuPaikkakuntaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.paikkakuntaKenttaTarkistus(kentta.getText());
@@ -136,7 +135,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuInstrumentitKentta(KeyEvent event) {
+    @FXML private void kirjoitettuInstrumentitKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.instrumentitKenttaTarkistus(kentta.getText());
@@ -156,8 +155,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML
-    void kirjoitettuGenretKentta(KeyEvent event) {
+    @FXML private void kirjoitettuGenretKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.genretKenttaTarkistus(kentta.getText());
@@ -177,7 +175,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuVapaanaKentta(KeyEvent event) {
+    @FXML private void kirjoitettuVapaanaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.vapaanaKenttaTarkistus(kentta.getText());
@@ -197,7 +195,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuKokemusKentta(KeyEvent event) {
+    @FXML private void kirjoitettuKokemusKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.kokemusKenttaTarkistus(kentta.getText());
@@ -217,7 +215,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
 
 
-    @FXML void kirjoitettuYhteystiedotKentta(KeyEvent event) {
+    @FXML private void kirjoitettuYhteystiedotKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
         virhe = bandbuddy.yhteystiedotKenttaTarkistus(kentta.getText());
@@ -237,97 +235,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
       
     
-    /**
-     * Asettaa henkilön tiedot tekstikenttien mukaan ja rekisteröi henkilön
-     */
-    public void lisaaHenkilo() {
-        this.kasiteltavaHenkilo.rekisteroi();
-        this.kasiteltavaHenkilo.setNimi(this.nimiKentta.getText().trim());
-        this.kasiteltavaHenkilo.setIka(Mjonot.erotaInt(this.ikaKentta.getText(), 0));
-        this.kasiteltavaHenkilo.setSukupuoli(this.sukupuoliKentta.getText().trim());
-        this.kasiteltavaHenkilo.setPaikkakunta(this.paikkakuntaKentta.getText().trim());
-        StringBuilder instrumentit = new StringBuilder(this.instrumentitKentta.getText().trim());
-        luoInstrumentit(instrumentit);
-        StringBuilder genret = new StringBuilder(this.genretKentta.getText().trim());
-        luoGenret(genret);
-        this.kasiteltavaHenkilo.setVapaana(vapaanaKentta.getText());
-        this.kasiteltavaHenkilo.setKokemus(kokemusKentta.getText());
-        this.kasiteltavaHenkilo.setYhteystiedot(yhteystiedotKentta.getText());
-    }
-
-    
-    /**
-     * Luo merkkijonon perusteella henkilölle uudet instrumentit
-     * @param instrumentit        käsiteltävä merkkijono
-     */
-    public void luoInstrumentit(StringBuilder instrumentit) {
-        bandbuddy.poistaHenkilonInstrumentit(kasiteltavaHenkilo.getId());
-        if (instrumentit.length() > 0) {
-            while (instrumentit.length() > 0) {
-                String uusiInstrumenttiString = Mjonot.erota(instrumentit, ',', instrumentit.toString()).trim();
-                Instrumentti uusiInstrumentti = new Instrumentti();
-                uusiInstrumentti = bandbuddy.loytyykoInstrumentti(uusiInstrumenttiString);
-                if (uusiInstrumentti == null) { // ei löytynyt jos null
-                uusiInstrumentti = new Instrumentti(uusiInstrumenttiString);
-                uusiInstrumentti.rekisteroi();
-                bandbuddy.lisaa(uusiInstrumentti);
-                }
-               
-                // tarkistetaan oliko henkilöllä jo aikaisemmin tätä instrumenttia
-                
-                List<HenkiloJaInstrumentti> hjiLista = bandbuddy.soittimet(kasiteltavaHenkilo.getId());
-                boolean loytyiko = false;
-                for (HenkiloJaInstrumentti alkio : hjiLista) {
-                    if (bandbuddy.soitin(alkio.getInstrumentinNro()).equalsIgnoreCase(uusiInstrumenttiString)) {
-                        loytyiko = true;
-                    }
-                }
-                if (loytyiko == false) {
-                    bandbuddy.lisaaHloInstrumentti(kasiteltavaHenkilo, uusiInstrumentti);
-                }
-            }
-        }
-    }
-    
-    
-    /**
-     * Luo merkkijonon perusteella henkilölle uudet genret
-     * @param genret        käsiteltävä merkkijono
-     */
-    public void luoGenret(StringBuilder genret) {
-        bandbuddy.poistaHenkilonGenret(kasiteltavaHenkilo.getId());
-        if (genret.length() > 0) {
-            while (genret.length() > 0) {
-                String uusiGenreString = Mjonot.erota(genret, ',', genret.toString()).trim();
-                Genre uusiGenre= new Genre();
-                uusiGenre = bandbuddy.loytyykoGenre(uusiGenreString);
-                if (uusiGenre == null) { // ei löytynyt jos null
-                uusiGenre = new Genre(uusiGenreString);
-                uusiGenre.rekisteroi();
-                bandbuddy.lisaa(uusiGenre);
-                }
-               
-                // tarkistetaan oliko henkilöllä jo aikaisemmin tätä genreä
-                
-                List<HenkiloJaGenre> hjgLista = bandbuddy.genret(kasiteltavaHenkilo.getId());
-                boolean loytyiko = false;
-                for (HenkiloJaGenre alkio : hjgLista) {
-                    if (bandbuddy.genre(alkio.getGenrenNro()).equalsIgnoreCase(uusiGenreString)) {
-                        loytyiko = true;
-                    }
-                }
-                if (loytyiko == false) {
-                    bandbuddy.lisaaHloGenre(kasiteltavaHenkilo, uusiGenre);
-                }
-            }
-        }
-    }
-    
-    
-    @Override
-    public Henkilo getResult() {
-        return null;
-    }
+//----------------------------------------FXML:t päättyy tähän---------------------------------------------    
 
 
     @Override
@@ -369,6 +277,22 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
     }
    
     
+    @Override
+    public Henkilo getResult() {
+        return null;
+    }
+
+
+    /**
+     * Liittää bandbuddy-luokan kontrolleriin
+     * @param bandbuddy     luokka mikä halutaan liittää
+     */
+    private Object setBandBuddy(BandBuddy bandbuddy) {
+        this.bandbuddy = bandbuddy;
+        return null;
+    }
+    
+    
     /**
      * Avaa henkilön lisäys -ikkunan
      * @param modalityStage     mille stagelle ollaan modaalisia
@@ -376,15 +300,95 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
      * @param bandbuddy         bandbuddy-luokka
      * @return                  modalcontrolleri
      */
-    
-    public static Henkilo avaaLisaaHenkilo(Stage modalityStage, Henkilo uusiHenkilo, BandBuddy bandbuddy) {
+    static Henkilo avaaLisaaHenkilo(Stage modalityStage, Henkilo uusiHenkilo, BandBuddy bandbuddy) {
         return ModalController.<Henkilo, HenkilonLisaysController>showModal(HenkilonLisaysController.class.getResource("henkilonlisays.fxml"), "Uuden henkilön tiedot", modalityStage, uusiHenkilo, ctrl -> ctrl.setBandBuddy(bandbuddy));
     }
 
+
+    /**
+     * Asettaa henkilön tiedot tekstikenttien mukaan ja rekisteröi henkilön
+     */
+    private void lisaaHenkilo() {
+        this.kasiteltavaHenkilo.rekisteroi();
+        this.kasiteltavaHenkilo.setNimi(this.nimiKentta.getText().trim());
+        this.kasiteltavaHenkilo.setIka(Mjonot.erotaInt(this.ikaKentta.getText(), 0));
+        this.kasiteltavaHenkilo.setSukupuoli(this.sukupuoliKentta.getText().trim());
+        this.kasiteltavaHenkilo.setPaikkakunta(this.paikkakuntaKentta.getText().trim());
+        StringBuilder instrumentit = new StringBuilder(this.instrumentitKentta.getText().trim());
+        luoInstrumentit(instrumentit);
+        StringBuilder genret = new StringBuilder(this.genretKentta.getText().trim());
+        luoGenret(genret);
+        this.kasiteltavaHenkilo.setVapaana(vapaanaKentta.getText());
+        this.kasiteltavaHenkilo.setKokemus(kokemusKentta.getText());
+        this.kasiteltavaHenkilo.setYhteystiedot(yhteystiedotKentta.getText());
+    }
+
     
-    private Object setBandBuddy(BandBuddy bandbuddy) {
-        this.bandbuddy = bandbuddy;
-        return null;
+    /**
+     * Luo merkkijonon perusteella henkilölle uudet instrumentit
+     * @param instrumentit        käsiteltävä merkkijono
+     */
+    private void luoInstrumentit(StringBuilder instrumentit) {
+        bandbuddy.poistaHenkilonInstrumentit(kasiteltavaHenkilo.getId());
+        if (instrumentit.length() > 0) {
+            while (instrumentit.length() > 0) {
+                String uusiInstrumenttiString = Mjonot.erota(instrumentit, ',', instrumentit.toString()).trim();
+                Instrumentti uusiInstrumentti = new Instrumentti();
+                uusiInstrumentti = bandbuddy.loytyykoInstrumentti(uusiInstrumenttiString);
+                if (uusiInstrumentti == null) { // ei löytynyt jos null
+                uusiInstrumentti = new Instrumentti(uusiInstrumenttiString);
+                uusiInstrumentti.rekisteroi();
+                bandbuddy.lisaa(uusiInstrumentti);
+                }
+
+                // tarkistetaan oliko henkilöllä jo aikaisemmin tätä instrumenttia
+                List<HenkiloJaInstrumentti> hjiLista = bandbuddy.soittimet(kasiteltavaHenkilo.getId());
+                boolean loytyiko = false;
+                for (HenkiloJaInstrumentti alkio : hjiLista) {
+                    if (bandbuddy.soitin(alkio.getInstrumentinNro()).equalsIgnoreCase(uusiInstrumenttiString)) {
+                        loytyiko = true;
+                    }
+                }
+                // jos ei ollut niin luodaan uusi alkio joka liittää henkilön ja instrumentin toisiinsa
+                if (loytyiko == false) {
+                    bandbuddy.lisaaHloInstrumentti(kasiteltavaHenkilo, uusiInstrumentti);
+                }
+            }
+        }
+    }
+    
+    
+    /**
+     * Luo merkkijonon perusteella henkilölle uudet genret
+     * @param genret                käsiteltävä merkkijono
+     */
+    private void luoGenret(StringBuilder genret) {
+        bandbuddy.poistaHenkilonGenret(kasiteltavaHenkilo.getId());
+        if (genret.length() > 0) {
+            while (genret.length() > 0) {
+                String uusiGenreString = Mjonot.erota(genret, ',', genret.toString()).trim();
+                Genre uusiGenre= new Genre();
+                uusiGenre = bandbuddy.loytyykoGenre(uusiGenreString);
+                if (uusiGenre == null) { // ei löytynyt jos null
+                uusiGenre = new Genre(uusiGenreString);
+                uusiGenre.rekisteroi();
+                bandbuddy.lisaa(uusiGenre);
+                }
+               
+                // tarkistetaan oliko henkilöllä jo aikaisemmin tätä genreä 
+                List<HenkiloJaGenre> hjgLista = bandbuddy.genret(kasiteltavaHenkilo.getId());
+                boolean loytyiko = false;
+                for (HenkiloJaGenre alkio : hjgLista) {
+                    if (bandbuddy.genre(alkio.getGenrenNro()).equalsIgnoreCase(uusiGenreString)) {
+                        loytyiko = true;
+                    }
+                }
+                // jos ei ollut niin luodaan uusi alkio joka liittää henkilön ja genren toisiinsa
+                if (loytyiko == false) {
+                    bandbuddy.lisaaHloGenre(kasiteltavaHenkilo, uusiGenre);
+                }
+            }
+        }
     }
 
     
@@ -393,7 +397,7 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
      * jotain ja laittaa "lisää"-painikkeen painettavaksi-tilaan jos edellä mainitut kriteerit täyttyvät
      * 
      */
-    public void onkoKentatTaytettyOikein() {
+    private void onkoKentatTaytettyOikein() {
         // katsotaan onko tekstikentissä virheitä tarkistamalla niiden tyylit
         List<String> normal = FXCollections.observableArrayList();
         normal.add("normal");
@@ -415,7 +419,5 @@ public class HenkilonLisaysController implements ModalControllerInterface<Henkil
         } 
         this.henkilonLisaysLisaaJasen.setDisable(true);
         return;
-    }
-    
-    
+    }   
 }

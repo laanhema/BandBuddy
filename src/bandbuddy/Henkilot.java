@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.File;
@@ -10,17 +7,18 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-
 /**
- * Henkilö-luokka
+ * Henkilöt-luokka
+ * Sisältää tietorakenteen josta löytyvät kaikki yksittäiset henkilöt
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
 public class Henkilot {
-    private Henkilo[] henkilotTaulukko;
-    private int kokoLkm = 0;
-    private int lkm = 0;
-    private String tiedostonNimi = "henkilot.dat";
+    
+    private Henkilo[]   henkilotTaulukko;
+    private int         kokoLkm             = 0;
+    private int         lkm                 = 0;
+    private String      tiedostonNimi       = "henkilot.dat";
 
 
     /**
@@ -250,36 +248,5 @@ public class Henkilot {
             this.henkilotTaulukko[i] = this.henkilotTaulukko[i + 1];
         }
         this.henkilotTaulukko[lkm] = null;
-    }
-    
-    
-    /**
-     * @param args ei käytössä
-     */
-    public static void main(String[] args) {
-        // Näitä ei tarvita tulevaisuudessa, poistetaan joskus
-        Henkilot henkilot = new Henkilot();
-        Henkilo testiHenkilo1 = new Henkilo();
-        testiHenkilo1.rekisteroi();
-        testiHenkilo1.taytaValiaikaisetTiedot();
-        Henkilo testiHenkilo2 = new Henkilo();
-        testiHenkilo2.rekisteroi();
-        testiHenkilo2.taytaValiaikaisetTiedot();
-
-        henkilot.lisaa(testiHenkilo1);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.lisaa(testiHenkilo2);
-        henkilot.tulosta();
-        henkilot.lueTiedostosta();
-        henkilot.tulosta();
     }
 }

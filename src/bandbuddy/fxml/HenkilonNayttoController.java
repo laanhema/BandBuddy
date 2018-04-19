@@ -2,16 +2,11 @@ package bandbuddy.fxml;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import bandbuddy.BandBuddy;
 import bandbuddy.Henkilo;
 import bandbuddy.HenkiloJaGenre;
@@ -20,11 +15,12 @@ import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 
 /**
+ * Kontrolleri "henkilön näyttö" -ikkunalle
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
-public class HenkilonNayttoController implements ModalControllerInterface<Henkilo>, Initializable {
-    @FXML private Button henkilonNayttoTakaisin;
+public class HenkilonNayttoController implements ModalControllerInterface<Henkilo> {
+
     @FXML private TextField nimiKentta;
     @FXML private TextField ikaKentta;
     @FXML private TextField sukupuoliKentta;
@@ -34,13 +30,13 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     @FXML private TextField vapaanaKentta;
     @FXML private TextField kokemusKentta;
     @FXML private TextField yhteystiedotKentta;
-    private Henkilo kasiteltavaHenkilo;
-    private BandBuddy bandbuddy;
+    @FXML private Button    henkilonNayttoTakaisin;
     
-
-
-    @FXML
-    void painettuHenkilonNayttoTakaisin(ActionEvent event) {
+    private Henkilo         kasiteltavaHenkilo;
+    private BandBuddy       bandbuddy;
+    
+    
+    @FXML private void painettuHenkilonNayttoTakaisin(ActionEvent event) {
         ModalController.closeStage(henkilonNayttoTakaisin);
         event.consume();
     }
@@ -54,7 +50,6 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     
     @Override
     public void handleShown() {
-        
         this.nimiKentta.getStyleClass().clear();
         this.nimiKentta.getStyleClass().add("normal");
         
@@ -97,7 +92,6 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
         instrumentitSB.deleteCharAt(instrumentitSB.length()-1);
         this.instrumentitKentta.setText(instrumentitSB.toString());
         
-        
         List<HenkiloJaGenre> hjgLista = bandbuddy.genret(kasiteltavaHenkilo.getId());
         List<String> genreLista = new ArrayList<String>();
         for (HenkiloJaGenre alkio : hjgLista) {    
@@ -127,12 +121,6 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     }
 
     
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        //
-    }
-    
-    
     /**
      * Avaa henkilön näyttö -ikkunan
      * @param modalityStage               mille stagelle ollaan modaalisia
@@ -140,9 +128,7 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
      * @param bandbuddy                   bandbuddy
      * @return                            modalcontrolleri
      */
-    public static Henkilo avaaHenkilonNaytto(Stage modalityStage, Henkilo valittuHenkilo, BandBuddy bandbuddy) {
+    static Henkilo avaaHenkilonNaytto(Stage modalityStage, Henkilo valittuHenkilo, BandBuddy bandbuddy) {
         return ModalController.<Henkilo, HenkilonNayttoController>showModal(HenkilonNayttoController.class.getResource("henkilonnaytto.fxml"), "Henkilön tiedot", modalityStage, valittuHenkilo, ctrl -> ctrl.setBandBuddy(bandbuddy));
     }
-
-
 }

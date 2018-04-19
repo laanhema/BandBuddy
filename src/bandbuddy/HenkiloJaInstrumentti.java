@@ -1,37 +1,20 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.*;
-
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * HenkiloJaInstrumentti-luokka
  * Luokka joka liittää instrumentin ja jäsenen idt keskenään.
  * @author Markus Mäntymaa & Lauri Makkonen
- * @version 18.04.2018
- *
+ * @version 19.04.2018
  */
 public class HenkiloJaInstrumentti {
-	private int tunnusNro;
-	private int henkilonNro;
-	private int instrumentinNro;
-	
-	private static int seuraavaNro = 1;
-	
-	
-    /**
-     * Testipääluokka
-     * @param args ei käytössä
-     */	
-    public static void main(String[] args) {
-    	HenkiloJaInstrumentti testi= new HenkiloJaInstrumentti(3);
-    	testi.tulosta(System.out);
-    }
     
-        
+	private int        henkilonNro;
+	private int        instrumentinNro;
+	
+	 
     /**
      * Parametriton muodostaja HenkiloJaInstrumentti-oliolle
      */
@@ -79,51 +62,12 @@ public class HenkiloJaInstrumentti {
 	
 	
 	/**
-	 * Palauttaa alkion viitenumeron
-	 * @return palauttaa alkion viitenumeron
-	 */
-	public int getTunnusNro() {
-		return tunnusNro;
-	}
-	
-	
-	/**
 	 * Palauttaa instrumentin viitenumeron
 	 * @return instrumentin viitenumeron
 	 */
 	public int getInstrumentinNro() {
 		return instrumentinNro;
 	}
-	
-	
-	/**
-	 * Rekisteröi alkion.
-	 * Varmistaa että seuraava alkio saa yhden suuremman id:n.
-     * @example
-     * <pre name="test">
-     *   HenkiloJaInstrumentti soittaja= new HenkiloJaInstrumentti(1);
-     *   soittaja.rekisteroi();      
-     *   soittaja.getTunnusNro() === 1;
-     *   HenkiloJaInstrumentti soittaja2= new HenkiloJaInstrumentti(1);
-     *   soittaja2.rekisteroi();      
-     *   soittaja2.getTunnusNro() === 2;
-     * </pre>
-     */
-	public void rekisteroi() {
-		tunnusNro = seuraavaNro++;
-	}
-	
-	
-    /**
-     * Laittaa alkion tunnusNro:ksi annetun numeron
-     * @param numero        laitettava numero
-     */
-    public void rekisteroi(int numero) {
-        if (this.tunnusNro > 0)
-            return;
-        this.tunnusNro = numero;
-        seuraavaNro++;
-    }
 	
 	
 	/**
@@ -140,7 +84,7 @@ public class HenkiloJaInstrumentti {
 	 */
 	@Override
 	public String toString() {
-		return "" + getTunnusNro() + "|" + getHenkilonNro() + "|" + getInstrumentinNro() + "|";	
+		return getHenkilonNro() + "|" + getInstrumentinNro() + "|";	
 	}
 	
 	/**
@@ -150,15 +94,8 @@ public class HenkiloJaInstrumentti {
 	 */
 	public void parse(String s) {
 		StringBuffer sb = new StringBuffer(s);
-		this.rekisteroi(Mjonot.erota(sb, '|', getTunnusNro()));
 		henkilonNro = Mjonot.erota(sb, '|', getHenkilonNro());
 		instrumentinNro = Mjonot.erota(sb, '|', getInstrumentinNro());
-	}
-	
-	
-	@Override
-	public int hashCode() {
-	    return tunnusNro;
 	}
 	
 	
@@ -168,7 +105,5 @@ public class HenkiloJaInstrumentti {
 	 */
 	public void tulosta(OutputStream os) {
         tulosta(new PrintStream(os));
-    }
-
-	
+    }	
 }

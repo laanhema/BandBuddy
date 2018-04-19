@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bandbuddy;
 
 import java.io.File;
@@ -15,36 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * HenkiloJaInstrumentit-luokka
- * Sis‰lt‰‰ listan t‰ynn‰ HenkiloJaInstrumentti-luokan alkioita
+ * HenkiloJaGenret-luokka
+ * Sis‰lt‰‰ listan t‰ynn‰ HenkiloJaGenre-luokan alkioita
  * @author Markus M‰ntymaa & Lauri Makkonen
- * @version 18.04.2018
+ * @version 19.04.2018
  */
 public class HenkilotJaGenret implements Iterable<HenkiloJaGenre> {
-    private String tiedostonNimi = "henkilotjagenret.dat";
-    private final Collection<HenkiloJaGenre> alkiot = new ArrayList<HenkiloJaGenre>();
-
-
-    /**
-     * testip‰‰ohjelma
-     * @param args ei k‰ytˆss‰
-     */
-    public static void main(String[] args) {
-        HenkilotJaGenret soittajalista = new HenkilotJaGenret();
-        HenkiloJaGenre jaba = new HenkiloJaGenre(1);
-        jaba.vastaaKitaranSoittajaa(1);
-        HenkiloJaGenre dude = new HenkiloJaGenre(1);
-        dude.vastaaKitaranSoittajaa(1);
-        HenkiloJaGenre basisti = new HenkiloJaGenre(3);
-
-        soittajalista.lisaa(jaba);
-        soittajalista.lisaa(dude);
-        soittajalista.lisaa(basisti);
-
-        List<HenkiloJaGenre> soittajalista2 = soittajalista.hGenret(1);
-        for (int i = 0; i < soittajalista2.size(); i++)
-            System.out.println(soittajalista2.get(i).getHenkilonNro());
-    }
+    
+    private String                              tiedostonNimi   = "henkilotjagenret.dat";
+    private final Collection<HenkiloJaGenre>    alkiot          = new ArrayList<HenkiloJaGenre>();
 
 
     /**
@@ -54,13 +30,13 @@ public class HenkilotJaGenret implements Iterable<HenkiloJaGenre> {
      * #import java.util.*;
      * @example
      * <pre name="test">
-     *  HenkilotJaGenret hi = new HenkilotJaGenret();
-     *  HenkiloJaGenre a = new HenkiloJaGenre(1); hi.lisaa(a);
-     *  HenkiloJaGenre b = new HenkiloJaGenre(1); hi.lisaa(b);
-     *  HenkiloJaGenre c = new HenkiloJaGenre(2); hi.lisaa(c);
-     *  List<HenkiloJaGenre> kaikki;
-     *  kaikki = hi.hGenret(1);
-     *  kaikki.size() === 2; 
+     * HenkilotJaGenret hi = new HenkilotJaGenret();
+     * HenkiloJaGenre a = new HenkiloJaGenre(1); hi.lisaa(a);
+     * HenkiloJaGenre b = new HenkiloJaGenre(1); hi.lisaa(b);
+     * HenkiloJaGenre c = new HenkiloJaGenre(2); hi.lisaa(c);
+     * List<HenkiloJaGenre> kaikki;
+     * kaikki = hi.hGenret(1);
+     * kaikki.size() === 2; 
      * </pre> 
      */
     public List<HenkiloJaGenre> hGenret(int henkilonId) {
@@ -103,16 +79,16 @@ public class HenkilotJaGenret implements Iterable<HenkiloJaGenre> {
      * #PACKAGEIMPORT
      * #import java.util.*;
      * 
-     *  HenkilotJaGenret hJG = new HenkilotJaGenret();
-     *  HenkiloJaGenre a = new HenkiloJaGenre(); hJG.lisaa(a);
-     *  HenkiloJaGenre b = new HenkiloJaGenre(); hJG.lisaa(b);
-     *  HenkiloJaGenre c = new HenkiloJaGenre(); hJG.lisaa(c);
+     * HenkilotJaGenret hJG = new HenkilotJaGenret();
+     * HenkiloJaGenre a = new HenkiloJaGenre(); hJG.lisaa(a);
+     * HenkiloJaGenre b = new HenkiloJaGenre(); hJG.lisaa(b);
+     * HenkiloJaGenre c = new HenkiloJaGenre(); hJG.lisaa(c);
      * 
-     *  Iterator<HenkiloJaGenre> i2=hJG.iterator();
-     *  i2.next() === a;
-     *  i2.next() === b;
-     *  i2.next() === c;
-     *  i2.next() === b;  #THROWS NoSuchElementException  
+     * Iterator<HenkiloJaGenre> i2=hJG.iterator();
+     * i2.next() === a;
+     * i2.next() === b;
+     * i2.next() === c;
+     * i2.next() === b;  #THROWS NoSuchElementException  
      *  
      * </pre>
      */
@@ -151,7 +127,7 @@ public class HenkilotJaGenret implements Iterable<HenkiloJaGenre> {
         String kohdetiedostonNimi = this.tiedostonNimi;
         
         try ( PrintStream fo = new PrintStream(new FileOutputStream(kohdetiedostonNimi))) {
-            fo.println(";hiid| id| gid|");
+            fo.println(";id|gid|");
             for (HenkiloJaGenre ge : this.alkiot) {
                 fo.println(ge.toString());
             }
