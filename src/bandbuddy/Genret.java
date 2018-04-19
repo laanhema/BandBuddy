@@ -50,9 +50,9 @@ public class Genret implements Iterable<Genre> {
     
     
     /**
-     * Hakee kaikki genret
-     * @param tunnusnro toistaiseksi ei mit‰‰n
-     * @return tietorakenne jossa on kaikki genret.
+     * Hakee tunnusluvulla viedyn genren nimen
+     * @param tunnusnro genren tunnusnumero
+     * @return genren merkkijonona.
      * #import java.util.*;
      * @example
      * 
@@ -159,7 +159,24 @@ public class Genret implements Iterable<Genre> {
     
     /**
      * Iteraattori kaikkien genrien l‰pik‰ymiseen.
-     * return genre-iteraattori
+     * @return genre-iteraattori
+     * @example
+     * <pre name="test">
+     * #PACKAGEIMPORT
+     * #import java.util.*;
+     * 
+     *  Genret genret = new Genret();
+     *  Genre a = new Genre("Rock"); genret.lisaa(a);
+     *  Genre b = new Genre("Prog"); genret.lisaa(b);
+     *  Genre c = new Genre("Pop"); genret.lisaa(c);
+     * 
+     *  Iterator<Genre> i2=genret.iterator();
+     *  i2.next() === a;
+     *  i2.next() === b;
+     *  i2.next() === c;
+     *  i2.next() === b;  #THROWS NoSuchElementException  
+     *  
+     * </pre>
      */
 	@Override
 	public Iterator<Genre> iterator() {

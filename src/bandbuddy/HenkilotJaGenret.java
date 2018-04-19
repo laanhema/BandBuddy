@@ -98,6 +98,23 @@ public class HenkilotJaGenret implements Iterable<HenkiloJaGenre> {
 
     /**
      * @return listan iteraattorin
+     * @example
+     * <pre name="test">
+     * #PACKAGEIMPORT
+     * #import java.util.*;
+     * 
+     *  HenkilotJaGenret hJG = new HenkilotJaGenret();
+     *  HenkiloJaGenre a = new HenkiloJaGenre(); hJG.lisaa(a);
+     *  HenkiloJaGenre b = new HenkiloJaGenre(); hJG.lisaa(b);
+     *  HenkiloJaGenre c = new HenkiloJaGenre(); hJG.lisaa(c);
+     * 
+     *  Iterator<HenkiloJaGenre> i2=hJG.iterator();
+     *  i2.next() === a;
+     *  i2.next() === b;
+     *  i2.next() === c;
+     *  i2.next() === b;  #THROWS NoSuchElementException  
+     *  
+     * </pre>
      */
     @Override
     public Iterator<HenkiloJaGenre> iterator() {

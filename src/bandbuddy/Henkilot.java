@@ -179,8 +179,17 @@ public class Henkilot {
      * Lukee tiedoston rivit ja luo sen mukaa henkilöitä taulukkoon
      * @example
      * <pre name="test">
-     * 
-     * 
+     * #THROWS IOException
+     * #import java.io.IOException;
+     * #import fi.jyu.mit.ohj2.VertaaTiedosto;
+     * VertaaTiedosto.kirjoitaTiedosto("testi.dat", ";id|nimi|ika|sukupuoli|paikkakunta|vapaana|kokemus|yhteystiedot\n1|Erkki Esim|13|Mies|Hesa|viikonloppuisin|5v|040xxx\n2|Iso boi|26|Mies|Hesa|viikonloppuisin|10v|040xxx|");
+     * Henkilot testiHenkilotLuokka = new Henkilot();
+     * testiHenkilotLuokka.setLuettavaTiedosto("testi.dat");
+     * testiHenkilotLuokka.lueTiedostosta();
+     * VertaaTiedosto.tuhoaTiedosto("testi.dat");
+     * testiHenkilotLuokka.getLkm() === 2;
+     * testiHenkilotLuokka.getHenkilo(0).toString() === "1|Erkki Esim|13|Mies|Hesa|viikonloppuisin|5v|040xxx|";
+     * testiHenkilotLuokka.getHenkilo(1).toString() === "2|Iso boi|26|Mies|Hesa|viikonloppuisin|10v|040xxx|";
      * </pre>
      */
     public void lueTiedostosta() {
@@ -203,6 +212,14 @@ public class Henkilot {
             System.err.println("Tiedoston lukeminen ei onnistunut! " + fnfe.getMessage());
         }
     }
+    
+	/**
+	 * Laittaa luettavaksi tiedostoksi annetun merkkijonon
+	 * @param tiedosto     tiedosto jota halutaan lukea
+	 */
+	public void setLuettavaTiedosto(String tiedosto) {
+	    this.tiedostonNimi = tiedosto;
+	}
     
     
     /**

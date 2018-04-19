@@ -99,6 +99,23 @@ public class HenkilotJaInstrumentit implements Iterable<HenkiloJaInstrumentti> {
 
     /**
      * @return listan iteraattorin
+     * @example
+     * <pre name="test">
+     * #PACKAGEIMPORT
+     * #import java.util.*;
+     * 
+     *  HenkilotJaInstrumentit hJI = new HenkilotJaInstrumentit();
+     *  HenkiloJaInstrumentti a = new HenkiloJaInstrumentti(); hJI.lisaa(a);
+     *  HenkiloJaInstrumentti b = new HenkiloJaInstrumentti(); hJI.lisaa(b);
+     *  HenkiloJaInstrumentti c = new HenkiloJaInstrumentti(); hJI.lisaa(c);
+     * 
+     *  Iterator<HenkiloJaInstrumentti> i2=hJI.iterator();
+     *  i2.next() === a;
+     *  i2.next() === b;
+     *  i2.next() === c;
+     *  i2.next() === b;  #THROWS NoSuchElementException  
+     *  
+     * </pre>
      */
     @Override
     public Iterator<HenkiloJaInstrumentti> iterator() {
@@ -107,6 +124,7 @@ public class HenkilotJaInstrumentit implements Iterable<HenkiloJaInstrumentti> {
     
     
     /**
+     * 
      * Lukee tiedoston rivit ja luo sen mukaa alkioita tietorakenteeseen
      */
     public void lueTiedostosta() {
