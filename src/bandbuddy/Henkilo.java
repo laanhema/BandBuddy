@@ -352,7 +352,7 @@ public class Henkilo {
      * testiHenkilo1.toString() === "1|Roope Ankka|50|Mies|Ankkalinna|Iltaisin|10v|0401234567|";
      * Henkilo testiHenkilo2 = new Henkilo();
      * testiHenkilo2.parse("");
-     * testiHenkilo2.toString() === "||||||||";
+     * testiHenkilo2.toString() === "-1||-1||||||";
      * </pre>
      */
     public void parse(String merkkijono) {
