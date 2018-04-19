@@ -34,5 +34,15 @@ public class BandBuddyMain extends Application {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        
+
+    }
+    
+    
+    /**
+     * @param args Ei käytössä
+     */
+    public static void main(String[] args) {
+        launch(args);
     }
 }

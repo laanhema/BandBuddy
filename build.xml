@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project ht">
+<project default="create_run_jar" name="Create Runnable Jar for Project httesti">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <!--define folder properties-->
@@ -27,10 +27,10 @@
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.apiguardian_1.0.0.v20170910-2246.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.eclipse.fx.ide.css.jfx8_3.0.0.201705220750.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/Ali.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/comtestplug_1.0.7.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/fxgui.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.eclipse.fx.ide.css.jfx8_3.0.0.201705220750.jar"/>
         </jar>
     </target>
 </project>
