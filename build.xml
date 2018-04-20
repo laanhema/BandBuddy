@@ -29,7 +29,6 @@
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/plugins/org.eclipse.fx.ide.css.jfx8_3.0.0.201705220750.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/Ali.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/comtestplug_1.0.7.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/devel/ec47/eclipse/dropins/fxgui.jar"/>
         </jar>
     </target>
