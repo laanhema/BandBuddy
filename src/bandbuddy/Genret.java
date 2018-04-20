@@ -158,6 +158,7 @@ public class Genret implements Iterable<Genre> {
 	
 	/**
 	 * Laittaa luettavaksi tiedostoksi annetun merkkijonon
+	 * k‰ytet‰‰n testeiss‰
 	 * @param tiedosto     tiedosto jota halutaan lukea
 	 */
 	public void setLuettavaTiedosto(String tiedosto) {

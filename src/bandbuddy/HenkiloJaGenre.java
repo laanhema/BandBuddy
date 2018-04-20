@@ -91,6 +91,16 @@ public class HenkiloJaGenre {
 	 * Poimii merkkijonosta tiedot ja laittaa ne alkion parametreihin
 	 * K‰ytet‰‰n kun luetaan tiedostoa
 	 * @param s tiedoston rivi josta otetaan tiedot
+	 * @example
+	 * <pre name="test">
+	 * HenkiloJaGenre testialkio1 = new HenkiloJaGenre(1, 2);
+	 * testialkio1.getHenkilonNro()    === 1;
+	 * testialkio1.getGenrenNro()      === 2;
+	 * testialkio1.toString()          === "1|2|";
+	 * testialkio1.parse("4|8|");
+	 * testialkio1.getHenkilonNro()    === 4;
+	 * testialkio1.getGenrenNro()      === 8;
+	 * </pre>
 	 */
 	public void parse(String s) {
 		StringBuffer sb = new StringBuffer(s);
@@ -100,7 +110,7 @@ public class HenkiloJaGenre {
 	
 
 	/**
-	 * Tulostaa j‰senen tiedot
+	 * Tulostaa alkion tiedot
 	 * @param os tietovirta johon tulostetaan
 	 */
 	public void tulosta(OutputStream os) {

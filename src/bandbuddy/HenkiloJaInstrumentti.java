@@ -14,7 +14,7 @@ public class HenkiloJaInstrumentti {
 	private int        henkilonNro;
 	private int        instrumentinNro;
 	
-	 
+	
     /**
      * Parametriton muodostaja HenkiloJaInstrumentti-oliolle
      */
@@ -76,7 +76,7 @@ public class HenkiloJaInstrumentti {
 	 */
 	public void tulosta(PrintStream out) {
         out.println(henkilonNro);
-      }
+    }
 	
 	
 	/**
@@ -87,10 +87,21 @@ public class HenkiloJaInstrumentti {
 		return getHenkilonNro() + "|" + getInstrumentinNro() + "|";	
 	}
 	
+	
 	/**
 	 * Poimii merkkijonosta tiedot ja laittaa ne olion attribuutteihin
 	 * K‰ytet‰‰n kun luetaan tiedostoa
 	 * @param s tiedoston rivi josta otetaan tiedot
+	 * @example
+	 * <pre name="test">
+	 * HenkiloJaInstrumentti testialkio1 = new HenkiloJaInstrumentti(3, 7);
+     * testialkio1.getHenkilonNro()         === 3;
+     * testialkio1.getInstrumentinNro()     === 7;
+     * testialkio1.toString()               === "3|7|";
+     * testialkio1.parse("11|2|");
+     * testialkio1.getHenkilonNro()         === 11;
+     * testialkio1.getInstrumentinNro()     === 2;
+	 * </pre>
 	 */
 	public void parse(String s) {
 		StringBuffer sb = new StringBuffer(s);

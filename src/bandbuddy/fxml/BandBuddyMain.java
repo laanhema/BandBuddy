@@ -34,8 +34,6 @@ public class BandBuddyMain extends Application {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        
-
     }
     
     

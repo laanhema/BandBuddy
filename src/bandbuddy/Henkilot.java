@@ -211,6 +211,7 @@ public class Henkilot {
         }
     }
     
+    
 	/**
 	 * Laittaa luettavaksi tiedostoksi annetun merkkijonon
 	 * @param tiedosto     tiedosto jota halutaan lukea
@@ -235,6 +236,7 @@ public class Henkilot {
             System.err.println("Tiedostoon kirjoittaminen ei onnistunut! " + fnfe.getMessage());
         }
     }
+    
     
     /**
      * Poistaa henkilön tietorakenteesta

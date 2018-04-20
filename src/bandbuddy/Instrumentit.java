@@ -159,6 +159,7 @@ public class Instrumentit implements Iterable<Instrumentti> {
 	
 	/**
 	 * Laittaa luettavaksi tiedostoksi annetun merkkijonon
+	 * k‰ytet‰‰n testeiss‰
 	 * @param tiedosto     tiedosto jota halutaan lukea
 	 */
 	public void setLuettavaTiedosto(String tiedosto) {

@@ -250,7 +250,15 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.nimiKenttaTarkistus("Pate Perus")    === null;
+     * testiluokka.nimiKenttaTarkistus("")              === null;
+     * testiluokka.nimiKenttaTarkistus("1234")          === "Kirjoita nimesi muodossa Etunimi Sukunimi!";
+     * testiluokka.nimiKenttaTarkistus("-")             === "Kirjoita nimesi muodossa Etunimi Sukunimi!";
+     * testiluokka.nimiKenttaTarkistus(" ")             === "Kirjoita nimesi muodossa Etunimi Sukunimi!";
+     * </pre>
      */
     public String nimiKenttaTarkistus(String merkkijono) {
         if ( !merkkijono.matches("[A-Z|Ä|Ö]{1}[a-z|ä|ö]* [A-Z|Ä|Ö]{1}[a-z|ä|ö]*") && merkkijono.length() > 0 ) return "Kirjoita nimesi muodossa Etunimi Sukunimi!";
@@ -263,7 +271,15 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.ikaKenttaTarkistus("asdasdffs")     === "Kirjoita ikäsi käyttämällä vain numeroita!";
+     * testiluokka.ikaKenttaTarkistus("")              === null;
+     * testiluokka.ikaKenttaTarkistus("19")            === null;
+     * testiluokka.ikaKenttaTarkistus("-")             === "Kirjoita ikäsi käyttämällä vain numeroita!";
+     * testiluokka.ikaKenttaTarkistus(" ")             === "Kirjoita ikäsi käyttämällä vain numeroita!";
+     * </pre>
      */
     public String ikaKenttaTarkistus(String merkkijono) {
         if ( !merkkijono.matches("[0-9]{1,3}") && merkkijono.length() > 0 ) return "Kirjoita ikäsi käyttämällä vain numeroita!";
@@ -276,7 +292,15 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.sukupuoliKenttaTarkistus("asdasdffs")     === null;
+     * testiluokka.sukupuoliKenttaTarkistus("")              === null;
+     * testiluokka.sukupuoliKenttaTarkistus("19")            === "Tähän kenttään sallitaan vain aakkosia!";
+     * testiluokka.sukupuoliKenttaTarkistus("-")             === "Tähän kenttään sallitaan vain aakkosia!";
+     * testiluokka.sukupuoliKenttaTarkistus(" ")             === "Tähän kenttään sallitaan vain aakkosia!";
+     * </pre>
      */
     public String sukupuoliKenttaTarkistus(String merkkijono) {
         if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö]*") && merkkijono.length() > 0 ) return "Tähän kenttään sallitaan vain aakkosia!";
@@ -289,7 +313,15 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.paikkakuntaKenttaTarkistus("asdasdffs")     === null;
+     * testiluokka.paikkakuntaKenttaTarkistus("")              === null;
+     * testiluokka.paikkakuntaKenttaTarkistus("19")            === "Tähän kenttään sallitaan vain aakkosia!";
+     * testiluokka.paikkakuntaKenttaTarkistus("-")             === "Tähän kenttään sallitaan vain aakkosia!";
+     * testiluokka.paikkakuntaKenttaTarkistus(" ")             === "Tähän kenttään sallitaan vain aakkosia!";
+     * </pre>
      */
     public String paikkakuntaKenttaTarkistus(String merkkijono) {
         if ( !merkkijono.matches("[A-z|Ä|Ö|ä|ö]*") && merkkijono.length() > 0 ) return "Tähän kenttään sallitaan vain aakkosia!";
@@ -302,7 +334,17 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.instrumentitKenttaTarkistus("asdasdffs")     === null;
+     * testiluokka.instrumentitKenttaTarkistus("")              === null;
+     * testiluokka.instrumentitKenttaTarkistus("kitara")        === null;
+     * testiluokka.instrumentitKenttaTarkistus("pan-huilu")     === null;
+     * testiluokka.instrumentitKenttaTarkistus("19")            === "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * testiluokka.instrumentitKenttaTarkistus("-")             === "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * testiluokka.instrumentitKenttaTarkistus(" ")             === "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * </pre>
      */
     public String instrumentitKenttaTarkistus(String merkkijono) {
         if ( merkkijono.startsWith("-") || merkkijono.startsWith(" ") || merkkijono.endsWith("-") || merkkijono.endsWith(" ") )  return "Kirjoita tähän soittamasi instrumentit. Jos instrumentteja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
@@ -316,7 +358,17 @@ public class BandBuddy {
      * @param merkkijono        tekstikentän teksti
      * @return                  null, jos ei ole vikaa
      *                          muutoin palauttaa merkkijonon josta näkyy viat
-     * 
+     * @example
+     * <pre name="test">
+     * BandBuddy testiluokka = new BandBuddy();
+     * testiluokka.genretKenttaTarkistus("asdasdffs")     === null;
+     * testiluokka.genretKenttaTarkistus("")              === null;
+     * testiluokka.genretKenttaTarkistus("djent")         === null;
+     * testiluokka.genretKenttaTarkistus("r'n'b")         === null;
+     * testiluokka.genretKenttaTarkistus("19")            === "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * testiluokka.genretKenttaTarkistus("-")             === "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * testiluokka.genretKenttaTarkistus(" ")             === "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
+     * </pre>
      */
     public String genretKenttaTarkistus(String merkkijono) {
         if ( merkkijono.startsWith("-") || merkkijono.startsWith(" ") || merkkijono.startsWith("'") || merkkijono.endsWith("-") || merkkijono.endsWith(" ") || merkkijono.endsWith("'")  )  return "Kirjoita tähän sinua kiinnostavat musiikkilajit. Jos lajeja on monta erota ne pilkulla ja välilyönnillä toisistaan.";
