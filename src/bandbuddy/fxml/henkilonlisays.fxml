@@ -19,9 +19,9 @@
 		<BorderPane prefHeight="44.0" prefWidth="312.0"
 			BorderPane.alignment="CENTER">
 			<right>
-				<Button fx:id="henkilonLisaysLisaaJasen"
+				<Button fx:id="henkilonLisaysLisaaHenkilo"
 					mnemonicParsing="false"
-					onAction="#henkilonLisaysLisaaJasenPainettu" prefHeight="25.0"
+					onAction="#henkilonLisaysLisaaHenkiloPainettu" prefHeight="25.0"
 					prefWidth="103.0" text="Lisää jäsen" BorderPane.alignment="CENTER">
 					<BorderPane.margin>
 						<Insets right="10.0" />

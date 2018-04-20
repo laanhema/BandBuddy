@@ -36,6 +36,11 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     private BandBuddy       bandbuddy;
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan "takaisin"
+     * Sulkee ikkunan
+     * @param event
+     */
     @FXML private void painettuHenkilonNayttoTakaisin(ActionEvent event) {
         ModalController.closeStage(henkilonNayttoTakaisin);
         event.consume();
@@ -48,6 +53,10 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     }
 
     
+    /**
+     * Aliohjelma johon mennään kun kontrolleria aletaan käyttämään
+     * Laittaa tekstikenttien tyylit oikein ja täyttää kentät henkilön tiedoilla
+     */
     @Override
     public void handleShown() {
         this.nimiKentta.getStyleClass().clear();
@@ -105,16 +114,22 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
         this.vapaanaKentta.setText(kasiteltavaHenkilo.getVapaana());     
         this.kokemusKentta.setText(kasiteltavaHenkilo.getKokemus());     
         this.yhteystiedotKentta.setText(kasiteltavaHenkilo.getYhteystiedot());
-        
     }
 
     
+    /**
+     * Laittaa avaaLisääHenkilöstä tuodun henkilön tämän luokan käsiteltavaHenkilo-attribuuttiin
+     */
     @Override
     public void setDefault(Henkilo henkilo) {
         this.kasiteltavaHenkilo = henkilo; 
     }
     
     
+    /**
+     * Liittää bandbuddy-luokan kontrolleriin
+     * @param bandbuddy     luokka mikä halutaan liittää
+     */
     private Object setBandBuddy(BandBuddy bandbuddy) {
         this.bandbuddy = bandbuddy;
         return null;
@@ -124,7 +139,7 @@ public class HenkilonNayttoController implements ModalControllerInterface<Henkil
     /**
      * Avaa henkilön näyttö -ikkunan
      * @param modalityStage               mille stagelle ollaan modaalisia
-     * @param valittuHenkilo              uusi henkilö jota käsitellään
+     * @param valittuHenkilo              henkilö jota käsitellään
      * @param bandbuddy                   bandbuddy
      * @return                            modalcontrolleri
      */

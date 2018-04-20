@@ -43,6 +43,12 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     private BandBuddy       bandbuddy;
 
     
+    /**
+     * Aliohjelma johon mennään kun painetaan "tallenna"
+     * Ottaa tekstikentiin syötetyt tiedot ja laittaa ne henkilön tietoihin
+     * Sulkee ikkunan
+     * @param event             tapahtuma
+     */
     @FXML private void henkilonMuokkausTallennaPainettu(ActionEvent event) {
         this.kasiteltavaHenkilo.setNimi(this.nimiKentta.getText().trim());
         this.kasiteltavaHenkilo.setIka(Mjonot.erotaInt(this.ikaKentta.getText().trim(), 0));
@@ -64,12 +70,24 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan "peruuta"
+     * Ei tee mitään muuta kuin sulkee ikkunan
+     * @param event             tapahtuma
+     */
     @FXML private void henkilonMuokkausPeruutaPainettu(ActionEvent event) {
         ModalController.closeStage(henkilonMuokkausPeruuta);
         event.consume();
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan nimi-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuNimiKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -90,6 +108,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan ikä-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuIkaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -110,6 +135,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan sukupuoli-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuSukupuoliKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -130,6 +162,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan paikkakunta-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuPaikkakuntaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -150,6 +189,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan instrumentit-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuInstrumentitKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -170,6 +216,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan genret-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuGenretKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -190,6 +243,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan vapaana-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuVapaanaKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -210,6 +270,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan kokemus-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuKokemusKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -230,6 +297,13 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun kirjoitetaan yhteystiedot-tekstikenttään
+     * Tarkistaa onko kirjoitettu sisältö oikeanlaista
+     * Jos ei ole, muuttaa tekstikentän värin punaiseksi ja laittaa sen tool-tip:iin ohjeen
+     * Jos on, muuttaa tekstikentän värin normaaliksi
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuYhteystiedotKentta(KeyEvent event) {
         String virhe = null;
         TextField kentta = (TextField) event.getSource();
@@ -253,6 +327,10 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
 //----------------------------------------FXML:t päättyy tähän---------------------------------------------
 
 
+    /**
+     * Aliohjelma johon mennään kun kontrolleria aletaan käyttämään
+     * Laittaa tekstikenttien tyylit oikein ja täyttää kentät henkilön tiedoilla
+     */
     @Override
     public void handleShown() {
         this.nimiKentta.getStyleClass().clear();
@@ -313,6 +391,9 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Laittaa avaaLisääHenkilöstä tuodun henkilön tämän luokan käsiteltavaHenkilo-attribuuttiin
+     */
     @Override
     public void setDefault(Henkilo henkilo) {
         this.kasiteltavaHenkilo = henkilo; 
@@ -325,6 +406,10 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     }
 
 
+    /**
+     * Liittää bandbuddy-luokan kontrolleriin
+     * @param bandbuddy     luokka mikä halutaan liittää
+     */
     private Object setBandBuddy(BandBuddy bandbuddy) {
         this.bandbuddy = bandbuddy;
         return null;
@@ -334,7 +419,7 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     /**
      * Avaa henkilön muokkaus -ikkunan
      * @param modalityStage               mille stagelle ollaan modaalisia
-     * @param valittuHenkilo              uusi henkilö jota käsitellään
+     * @param valittuHenkilo              henkilö jota käsitellään
      * @param bandbuddy                   bandbuddy
      * @return                            modalcontrolleri
      */
@@ -344,7 +429,7 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
 
 
     /**
-     * Luo merkkijonon perusteella henkilölle uudet instrumentit
+     * Luo merkkijonon perusteella henkilölle instrumentit
      * @param instrumentit        käsiteltävä merkkijono
      */
     private void luoInstrumentit(StringBuilder instrumentit) {
@@ -378,7 +463,7 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     
     
     /**
-     * Luo merkkijonon perusteella henkilölle uudet genret
+     * Luo merkkijonon perusteella henkilölle genret
      * @param genret        käsiteltävä merkkijono
      */
     private void luoGenret(StringBuilder genret) {
@@ -412,9 +497,8 @@ public class HenkilonMuokkausController implements ModalControllerInterface<Henk
     
     
     /**
-     * Tarkistaa onko kaikki kentät täytetty oikein, varmistaa että kaikkiin pakollisiin kenttiin on laitettu 
-     * jotain ja laittaa "lisää"-painikkeen painettavaksi-tilaan jos edellä mainitut kriteerit täyttyvät
-     * 
+     * Tarkistaa onko kaikki kentät täytetty oikein, varmistaa että kaikkiin pakollisiin kenttiin on laitettu jotain
+     * Laittaa "tallenna"-painikkeen painettavaksi-tilaan jos edellä mainitut kriteerit täyttyvät
      */
     private void onkoKentatTaytettyOikein() {
         // katsotaan onko tekstikentissä virheitä tarkistamalla niiden tyylit

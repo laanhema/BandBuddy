@@ -23,12 +23,23 @@ public class HenkilonPoistoController implements ModalControllerInterface<Henkil
     private BandBuddy   bandbuddy;
 
 
+    /**
+     * Aliohjelma johon mennään kun painetaan "ei"
+     * Ei tehdä mitään, suljetaan ikkuna
+     * @param event             tapahtuma
+     */
     @FXML private void painettuPoistaEi(ActionEvent event) {
         ModalController.closeStage(poistaEi);
         event.consume();
     }
     
 
+    /**
+     * Aliohjelma, johon mennään kun painetaan "kyllä"
+     * Poistetaan henkilön instrumentit, genret ja itse henkilö
+     * Suljetaan ikkuna
+     * @param event             tapahtuma
+     */
     @FXML private void painettuPoistaKylla(ActionEvent event) {
         bandbuddy.poistaHenkilonInstrumentit(this.kasiteltavaHenkilo.getId());
         bandbuddy.poistaHenkilonGenret(this.kasiteltavaHenkilo.getId());
@@ -37,24 +48,36 @@ public class HenkilonPoistoController implements ModalControllerInterface<Henkil
         event.consume();
     }
  
+    
     @Override
     public Henkilo getResult() {
         return null;
     }
 
     
+    /**
+     * Aliohjelma johon mennään kun kontrolleria aletaan käyttämään
+     * Ei tee tällä hetkellä mitään
+     */
     @Override
     public void handleShown() {
         //
     }
 
     
+    /**
+     * Laittaa avaaLisääHenkilöstä tuodun henkilön tämän luokan käsiteltavaHenkilo-attribuuttiin
+     */
     @Override
     public void setDefault(Henkilo henkilo) {
         this.kasiteltavaHenkilo = henkilo; 
     }
     
     
+    /**
+     * Liittää bandbuddy-luokan kontrolleriin
+     * @param bandbuddy     luokka mikä halutaan liittää
+     */
     private Object setBandBuddy(BandBuddy bandbuddy) {
         this.bandbuddy = bandbuddy;
         return null;
@@ -64,7 +87,7 @@ public class HenkilonPoistoController implements ModalControllerInterface<Henkil
     /**
      * Avaa henkilön poisto -ikkunan
      * @param modalityStage               mille stagelle ollaan modaalisia
-     * @param valittuHenkilo              uusi henkilö jota käsitellään
+     * @param valittuHenkilo              henkilö jota käsitellään
      * @param bandbuddy                   bandbuddy
      * @return                            modalcontrolleri
      */

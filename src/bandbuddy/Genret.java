@@ -69,9 +69,9 @@ public class Genret implements Iterable<Genre> {
     
     /**
      * Lukee genret tiedostosta ja lis‰‰ ne tietorakenteeseen
+     * Jos tiedoston lukeminen ei onnistu niin ohjelma luo uuden tiedoston jota ohjelma k‰ytt‰‰ jatkossa
      * @example
      * <pre name="test">
-     * #THROWS IOException
      * #import java.io.IOException;
      * #import fi.jyu.mit.ohj2.VertaaTiedosto;
      * VertaaTiedosto.kirjoitaTiedosto("testi.dat", ";gid|genre|\n1|Jazz|\n2|Rock|\n3|Metal|\n4|Pop|\n5|EDM|\n");
@@ -100,6 +100,11 @@ public class Genret implements Iterable<Genre> {
 
         } catch ( FileNotFoundException fnfe ) {
            System.err.println("Tiedoston lukeminen ei onnistunut " + fnfe.getMessage());
+           try {
+               new File("genret.dat").createNewFile();
+           } catch (IOException ioe) {
+               System.err.println("Tiedoston luominen ei onnistunut " + ioe.getMessage());
+           }
         }
     }
         

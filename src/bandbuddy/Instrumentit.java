@@ -70,6 +70,7 @@ public class Instrumentit implements Iterable<Instrumentti> {
     
     /**
      * Lukee instrumentit tiedostosta ja lis‰‰ ne tietorakenteeseen
+     * Jos tiedoston lukeminen ei onnistu niin ohjelma luo uuden tiedoston jota ohjelma k‰ytt‰‰ jatkossa
      * @example
      * <pre name="test">
      * #THROWS IOException
@@ -100,7 +101,12 @@ public class Instrumentit implements Iterable<Instrumentti> {
             }
 
         } catch ( FileNotFoundException fnfe ) {
-           System.err.println("Tiedoston lukeminen ei onnistunut " + fnfe.getMessage());
+            System.err.println("Tiedoston lukeminen ei onnistunut " + fnfe.getMessage());
+            try {
+                new File("instrumentit.dat").createNewFile();
+            } catch (IOException ioe) {
+                System.err.println("Tiedoston luominen ei onnistunut " + ioe.getMessage());
+            }
         }
     }
         

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -208,6 +209,11 @@ public class Henkilot {
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("Tiedoston lukeminen ei onnistunut! " + fnfe.getMessage());
+            try {
+                new File("henkilot.dat").createNewFile();
+            } catch (IOException ioe) {
+                System.err.println("Tiedoston luominen ei onnistunut " + ioe.getMessage());
+            }
         }
     }
     

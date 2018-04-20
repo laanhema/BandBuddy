@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -116,6 +117,11 @@ public class HenkilotJaInstrumentit implements Iterable<HenkiloJaInstrumentti> {
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("Tiedoston lukeminen ei onnistunut! " + fnfe.getMessage());
+            try {
+                new File("henkilotjainstrumentit.dat").createNewFile();
+            } catch (IOException ioe) {
+                System.err.println("Tiedoston luominen ei onnistunut " + ioe.getMessage());
+            }
         }
     }
 

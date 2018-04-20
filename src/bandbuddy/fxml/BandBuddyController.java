@@ -49,6 +49,11 @@ public class BandBuddyController implements Initializable {
     private BandBuddy                       bandbuddy;
 
     
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "tallenna"
+     * Kirjoittaa mahdolliset muutokset tiedostoon
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuTallenna(ActionEvent event) {
         bandbuddy.kirjoitaMuutokset();
         Dialogs.showMessageDialog("Tiedot tallennettu!");
@@ -56,18 +61,33 @@ public class BandBuddyController implements Initializable {
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "sulje"
+     * Sulkee ohjelman
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuSulje(ActionEvent event) {
         Platform.exit();
         event.consume();
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "lisää uusi henkilö"
+     * Avaa uuden ikkunan jossa luodaan uusi henkilö
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuLisaaUusiHenkilo(ActionEvent event) {
         uusiHenkilo();
         event.consume();
     }
     
 
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "muokkaa henkilön tietoja"
+     * Avaa uuden ikkunan jossa muokataan henkilön tietoja
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuMuokkaaHenkilonTietoja(ActionEvent event) {
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
         if (valittuHenkilo == null) return; event.consume(); // jos henkilö-stringgridissä ei ole valittuna ketään, palataan takaisin
@@ -76,6 +96,12 @@ public class BandBuddyController implements Initializable {
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "poista henkilön tiedot"
+     * Avaa uuden ikkunan jossa varmistetaan halutaanko valitun henkilön tiedot poistaa
+     * Kun painetaan kyllä, poistaa henkilön sekä sen instrumentit ja genret.
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuPoista(ActionEvent event) {
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
         if (valittuHenkilo == null) return; event.consume(); // jos henkilö-stringgridissä ei ole valittuna ketään, palataan takaisin
@@ -85,6 +111,11 @@ public class BandBuddyController implements Initializable {
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun painetaan yläpalkin menusta "ohje"
+     * Avaa selaimella sivun jossa kerrotaan tarkemmin ohjelmasta
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMenuOhje(ActionEvent event) {
         Desktop desktop = Desktop.getDesktop();
         try {
@@ -101,13 +132,23 @@ public class BandBuddyController implements Initializable {
     
 //------------------------------------yläpalkin menun kontrollit päättyy tähän-----------------------------------
     
-
+    
+    /**
+     * Aliohjelma johon mennään kun painetaan pääikkunassa "lisää henkilö"
+     * Avaa uuden ikkunan jossa luodaan uusi henkilö
+     * @param event             tapahtuma
+     */
     @FXML private void painettuLisaaHenkilo(ActionEvent event) {
         uusiHenkilo();
         event.consume();
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun painetaan pääikkunassa "muokkaa henkilön tietoja"
+     * Avaa uuden ikkunan jossa muokataan henkilön tietoja
+     * @param event             tapahtuma
+     */
     @FXML private void painettuMuokkaaHenkilonTietoja(ActionEvent event) {
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
         if (valittuHenkilo == null) return; event.consume(); // jos henkilö-stringgridissä ei ole valittuna ketään, palataan takaisin
@@ -117,6 +158,10 @@ public class BandBuddyController implements Initializable {
     }
 
 
+    /**
+     * Aliohjelma johon mennään kun pääikkunan hakukenttään kirjoitetaan jotain
+     * @param event             tapahtuma
+     */
     @FXML private void kirjoitettuTarkennettuHaku(KeyEvent event) {
         henkiloStringGrid.clear();
         Henkilo temp = new Henkilo();
@@ -129,6 +174,10 @@ public class BandBuddyController implements Initializable {
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun klikataan pääikkunan henkilö-StringGridiä
+     * @param event             tapahtuma
+     */
     @FXML private void klikattuHenkiloStringGrid(MouseEvent event) {
         if (event.getClickCount() > 1) { // jos klikattiin enemmän kuin yhden kerran, avataan henkilön tiedot -ikkuna
             tuplaklikattuHenkiloStringGrid(event);
@@ -163,6 +212,10 @@ public class BandBuddyController implements Initializable {
     }
     
     
+    /**
+     * Aliohjelma johon mennään kun tuplaklikataan pääikkunan henkilö-StringGridiä
+     * @param event             tapahtuma
+     */
     @FXML private void tuplaklikattuHenkiloStringGrid(MouseEvent event) {
         Henkilo valittuHenkilo = getValittuHenkiloStringGridista();
         if (valittuHenkilo == null) return; event.consume(); // jos henkilö-stringgridissä ei ole valittuna ketään, palataan takaisin
@@ -173,7 +226,10 @@ public class BandBuddyController implements Initializable {
     
 //----------------------------------------FXML:t päättyy tähän---------------------------------------------
     
-   
+    
+    /**
+     * Aliohjelma jota kutsutaan kun kontrolleri luodaan
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         alustaStringGridit();
@@ -182,7 +238,7 @@ public class BandBuddyController implements Initializable {
     
     /**
      * Liittää bandbuddy-luokan kontrolleriin
-     * @param bandbuddy     luokka mikä halutaan liittää
+     * @param bandbuddy     bandbuddy-luokka
      */
     void setBandBuddy(BandBuddy bandbuddy) {
         this.bandbuddy = bandbuddy;
@@ -190,7 +246,7 @@ public class BandBuddyController implements Initializable {
     
     
     /**
-     * Laittaa henkilöt-taulukon alkiot näkymään StringGridiin
+     * Laittaa kaikki henkilöt-taulukon alkiot näkymään henkilö-StringGridiin
      */
     void laitaHenkilotTaulukkoStringGridiin() {
         henkiloStringGrid.clear();
@@ -204,7 +260,7 @@ public class BandBuddyController implements Initializable {
     
     /**
      * Palauttaa henkilö-StringGridin tämän hetkisen valitun henkilön
-     * @return      valittu henkilö
+     * @return          valittu henkilö
      */
     private Henkilo getValittuHenkiloStringGridista() {
         return henkiloStringGrid.getObject(henkiloStringGrid.getRowNr());
@@ -213,6 +269,7 @@ public class BandBuddyController implements Initializable {
 
     /**
      * Alustaa kaikki StringGridit
+     * Laittaa StringGridien riveihin halutut tekstit ja säätää niiden asetukset
      */
     private void alustaStringGridit() {
         henkiloStringGrid.clear();
@@ -254,7 +311,7 @@ public class BandBuddyController implements Initializable {
    
     
     /**
-     * Lisää instrumentit instrumentti-StringGridiin
+     * Lisää kaikki henkilön instrumentit instrumentti-StringGridiin
      * @param lisattavatInstrumentit   lisättävät instrumentit
      */
     private void lisaaInstrumenttiStringGridiin(List<String> lisattavatInstrumentit) {
@@ -265,7 +322,7 @@ public class BandBuddyController implements Initializable {
     
     
     /**
-     * Lisää genret genre-StringGridiin
+     * Lisää kaikki henkilön genret genre-StringGridiin
      * @param lisattavatGenret lisättävät genret
      */
     private void lisaaGenreStringGridiin(List<String> lisattavatGenret) {
@@ -274,7 +331,7 @@ public class BandBuddyController implements Initializable {
         genreStringGrid.add(in);
     }
     
-
+    
     /**
      * Luo uuden henkilön ja avaa uuden ikkunan sen tietojen muokkaamiseen
      */
