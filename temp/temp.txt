@@ -1,0 +1,3 @@
+git svn clone --trunk=trunk --tags=tags --authors-file=authors.txt --no-metadata https://svn.cc.jyu.fi/srv/svn/ohj2ht/k2018/laanhema/ .
+
+käytä origin nimeä tällä kertaa
