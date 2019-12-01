@@ -1,4 +1,0 @@
-(no author) = Lauri Makkonen <laurimakkonen@hotmail.fi>
-laanhema = Lauri Makkonen <laurimakkonen@hotmail.fi>
-majumant = Markus Mäntymaa <majumant@jyu.student.fi>
-lahaeske = no_author <no_author@no_author>
